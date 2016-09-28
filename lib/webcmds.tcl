@@ -1,4 +1,5 @@
 package require http
+package require platform
 
 # http://trebuchet.cvs.sourceforge.net/viewvc/trebuchet/trebuchet/changes.txt
 
@@ -13,161 +14,48 @@ package require http
     {-timeout     0    {Timeout in milliseconds, for initial check.}}
     {?scripturl   {}   {The URL of the upgrade script to check.}}
 } {
-    global treb_revision treb_temp_dir treb_root_dir
-    global tcl_platform
-    set upgrade_files {}
+    global treb_revision
     set result "ok"
-    set fnum 0
-    if {![file writable $treb_root_dir]} {
-        if {!$nowarns} {
-            tk_messageBox -type ok -icon error -title "Network Update" -message \
-                "This account doesn't have permissions to upgrade Trebuchet.\nPlease contact your system's administrator."
-        }
-        return
-    }
     if {$scripturl == ""} {
-        set scripturl "http://www.belfry.com/fuzzball/trebuchet/upgrade.script5" 
+        set scripturl "http://raw.githubusercontent.com/revarbat/trebuchet/master/changes.txt"
     }
-    set errcode [catch {/web_fetch $scripturl -title "Network Update" -caption "Checking for updates..." -timeout $timeout} data]
+    set errcode [catch {/web_fetch $scripturl -title "Update" -caption "Checking for updates..." -timeout $timeout} data]
     if {$errcode != 0} {
         /web_fetch_complete
         if {[/prefs:get use_http_proxy]} {
-            set mesg "Unable to connect to the Network Update site.\nPerhaps your proxy settings are incorrect?\nError: $data"
+            set mesg "Unable to connect to GitHub.\nPerhaps your proxy settings are incorrect?\nError: $data"
         } else {
-            set mesg "Unable to connect to the Network Update site.  Please try again later,\nor contact your system's administrator if the problem persists.\nError: $data"
+            set mesg "Unable to connect to GitHub.  Please try again later,\nor contact your system's administrator if the problem persists.\nError: $data"
         }
-        tk_messageBox -type ok -icon error -title "Network Update" -message $mesg
+        tk_messageBox -type ok -icon error -title "Update" -message $mesg
         return
     }
     set cfgdata [split $data "\n"]
-            set result [tk_messageBox -type okcancel -default ok -icon info -title "Network Update" -message $cfgdata]
-    set newrev [lindex $cfgdata 0]
+    set newrev [lindex [split [lindex $cfgdata 0] " "] 1]
+    set newrev [join [split $newrev "."] ""]
     if {$data != {} && $newrev > $treb_revision} {
         if {!$force} {
-            set result [tk_messageBox -type okcancel -default ok -icon info -title "Network Update" -message \
-                "There is an upgrade ($newrev) available for Trebuchet.\nPlease click on the Ok button to upgrade."]
+            set result [tk_messageBox -type okcancel -default ok -icon info -title "Update" -message \
+                "There is a new version of Trebuchet! ($newrev)\nClick Ok to go to the download website."]
             if {$result == "cancel"} {
                 return
             }
         }
-        set filecnt 0
-        set total_byte_count 0
-        foreach line [lrange $cfgdata 1 end] {
-            if {[lindex $line 0] == "file" && [lindex $line 1] > $treb_revision} {
-                incr total_byte_count [lindex $line 4]
-                incr filecnt
-            }
-        }
-        set filenum 0
-        set current_byte_count 0
-        foreach line [lrange $cfgdata 1 end] {
-            if {$line == {}} continue
-            if {[string index $line 0] == "#"} continue
-            set cmd [lindex $line 0]
-            set line [lrange $line 1 end]
-            switch -exact -- $cmd {
-                message {
-                    tk_messageBox -type ok -icon info -title "Network Update" \
-                        -message $line
-                }
-                exec { catch { uplevel #0 $line } }
-                exit { return }
-                file {
-                    if {[lindex $line 0] > $treb_revision} {
-                        incr filenum
-                        while {1} {
-                            set tmpfilename [format "trebupgr.%0.3d" $fnum]
-                            set tmpfile [file join $treb_temp_dir $tmpfilename]
-                            if {![file exists $tmpfile]} {
-                                break
-                            }
-                            incr fnum
-                        }
-                        set file $treb_root_dir
-                        foreach part [split [lindex $line 1] "/"] {
-                            set file [file join $file $part]
-                        }
-                        set url  [lindex $line 2]
-                        for {set i 0} {$i < 3} {incr i} {
-                            update
-                            set errcode [catch {/web_fetch $url \
-                                        -file $tmpfile -persistent \
-                                        -filenum $filenum -filecount $filecnt \
-                                        -bytestotal $total_byte_count \
-                                        -bytescurr $current_byte_count} result]
-                            if {$result == "ok" && $errcode == 0} {
-                                break
-                            }
-                        }
-                        if {$result != "ok" || $errcode != 0} {
-                            /web_fetch_complete
-                            tk_messageBox -type ok -icon error -title "Network Update" \
-                                -message "Unable to download upgrade files.  Try again later."
-                            foreach {tmpfile file} $upgrade_files {
-                                file delete -force -- $tmpfile
-                            }
-                            break
-                        }
-                        incr current_byte_count [lindex $line 3]
-                        lappend upgrade_files $tmpfile
-                        lappend upgrade_files $file
-                        incr fnum
-                    }
-                }
-                flush {
-                    set restartflag 0
-                    foreach {tmpfile file} $upgrade_files {
-                        file mkdir [file dirname $file]
-                        file rename -force -- $tmpfile $file
-                        if {$file == [file join $treb_lib_dir webcmds.tcl]} {
-                            set restartflag 1
-                        }
-                        switch -glob -- $tcl_platform(platform) {
-                            unix {
-                                if {[string match "*Trebuchet.tcl" $file]} {
-                                    file attributes $file -permissions 493
-                                } else {
-                                    file attributes $file -permissions 420
-                                }
-                            }
-                        }
-                    }
-                    set upgrade_files {}
-                    if {$restartflag} {
-                        source [file join $treb_lib_dir webcmds.tcl]
-                        /web_upgrade -force -nowarns $scripturl
-                        return
-                    }
-                }
-            }
-        }
-        if {$result == "ok"} {
-            foreach {tmpfile file} $upgrade_files {
-                if {$tmpfile != {}} {
-                    file mkdir [file dirname $file]
-                    file rename -force -- $tmpfile $file
-                    switch -glob -- $tcl_platform(platform) {
-                        unix {
-                            if {[string match "*Trebuchet.tcl" $file]} {
-                                file attributes $file -permissions 493
-                            } else {
-                                file attributes $file -permissions 420
-                            }
-                        }
-                    }
-                }
-            }
-            /web_fetch_complete
-            set result [tk_messageBox -type yesno -icon info -title "Network Update" \
-                            -message "Your upgrade has been completed successfully, and will take effect when you next run Trebuchet.\nWould you like to exit Tebuchet now?"]
-            if {$result == "yes"} {
-                /quit
-            }
-        }
+	set plat [platform::generic]
+	set dlurls(macosx-x86_64) "https://raw.githubusercontent.com/revarbat/trebuchet/release_osx_64bit/"
+	set dlurls(macosx-ix86) "https://raw.githubusercontent.com/revarbat/trebuchet/release_osx_32bit/"
+	set dlurls(win32-x86_64) "https://raw.githubusercontent.com/revarbat/trebuchet/release_win_64bit/"
+	set dlurls(win32-ix86) "https://raw.githubusercontent.com/revarbat/trebuchet/release_win_32bit/"
+	set dlurls() "https://github.com/revarbat/trebuchet/"
+	if {[info exists dlurl($plat)]} {
+	    set dlurl $dlurls($plat)
+	} else {
+	    set dlurl $dlurls()
+	}
+	/web_view $dlurl
     } else {
         if {!$nowarns} {
-            tk_messageBox -type ok -icon info -title "Network Update" -message \
-                "No upgrades are currently available."
+            tk_messageBox -type ok -icon info -title "Update" -message "No upgrades are currently available."
         }
     }
 }
