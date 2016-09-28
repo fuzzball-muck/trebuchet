@@ -31,7 +31,7 @@ catch { package require griffin }
 #################################
 # GLOBAL VARIABLES
 #
-global treb_revision; set treb_revision 1080
+global treb_revision; set treb_revision 1081
 global treb_version; set treb_version "1.[format %03d [expr {$treb_revision - 1000}]]"
 global treb_name; set treb_name "Trebuchet Tk"
 global wordchars; set wordchars {-A-Za-z0-9_\'\\.}

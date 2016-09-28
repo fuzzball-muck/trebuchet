@@ -41,18 +41,7 @@ package require platform
                 return
             }
         }
-	set plat [platform::generic]
-	set dlurls(macosx-x86_64) "https://raw.githubusercontent.com/revarbat/trebuchet/release_osx_64bit/"
-	set dlurls(macosx-ix86) "https://raw.githubusercontent.com/revarbat/trebuchet/release_osx_32bit/"
-	set dlurls(win32-x86_64) "https://raw.githubusercontent.com/revarbat/trebuchet/release_win_64bit/"
-	set dlurls(win32-ix86) "https://raw.githubusercontent.com/revarbat/trebuchet/release_win_32bit/"
-	set dlurls() "https://github.com/revarbat/trebuchet/"
-	if {[info exists dlurl($plat)]} {
-	    set dlurl $dlurls($plat)
-	} else {
-	    set dlurl $dlurls()
-	}
-	/web_view $dlurl
+	/web_view "https://github.com/revarbat/trebuchet/releases"
     } else {
         if {!$nowarns} {
             tk_messageBox -type ok -icon info -title "Update" -message "No upgrades are currently available."
