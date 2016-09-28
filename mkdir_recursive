@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ ! -d $1 ]; then
+	$0 `dirname $1`
+	mkdir $1
+	chmod 755 $1
+fi
+

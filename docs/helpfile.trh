@@ -1,0 +1,1253 @@
+Style Header {-font {Helvetica 14 bold italic} -foreground green4 -wrap word -spacing1 12 -spacing3 4}
+Style SbH {-font {Helvetica 10 bold} -foreground green4 -wrap word}
+Style Text {-font {Helvetica 10} -foreground black -wrap word -lmargin2 8}
+Style Defin {-font {Helvetica 10} -foreground black -wrap word -lmargin2 120}
+Style Bold {-font {Helvetica 10 bold} -foreground black -wrap word}
+Style Pre {-font {Courier 10 bold} -foreground black -wrap none}
+Style Arg {-font {Times 12 italic} -foreground green4 -wrap word}
+Style BNF {-font {Helvetica 10 bold} -foreground green4 -wrap word}
+Style Lit {-font {Courier 10 bold} -foreground black -wrap word}
+Style Link {-font {Helvetica 10 bold underline} -foreground blue2}
+Title {Trebuchet Tk Help}
+Page Main "Welcome to Trebuchet!" {
+    Header "Welcome to Trebuchet!"
+    BNF {Brought to you with the help of the words Open and Source} Brk BNF {and the letters G, P and L.} Para
+	Text {Choose the kind of help you'd like} Brk
+	Indent {
+		Link {Quick Start}	Main:QuickStart	Pre {		} Text {Help for the first time user} Brk
+		Link {The Main Window}	Main:Window		Pre {	}	  Text {Introduces the visible parts of Trebuchet} Brk
+    		Link {Menus}		Menu:Main		Pre {		} Text {A walk through the menus.} Brk
+		Link {Overviews}	Main:Overviews	Pre {		} Text {Introduces the main concepts of use.} Brk
+		Link {Tutorials}	Main:Tutor		Pre {		} Text {Brief tutorials. No frills.} Brk
+		Link {How To..}		Main:HowTo		Pre {		} Text {How to solve a few problems.} Brk
+	}
+}
+Page Main:Commands "Commands Overview" {
+    Header "Commands Overview"
+	Text "The current overviews are:"
+	Indent {
+    		Link {Worlds}			World:Main		Brk
+    		Link {Font Styles}		Styles:Main		Brk
+    		Link {Highlights and triggers}	Hilites:Main		Brk
+    		Link {Macros}			Macros:Main		Brk
+    		Link {Keyboard Bindings}	Bindings:Main		Brk
+    		Link {QuickButtons}		QuickButtons:Main	Brk
+    		Link {Preferences}		Prefs:Main		Brk
+    		Link {Commands}			Commands:Main		Brk
+	}
+}
+Page Main:Overviews "Conceptual Overviews" {
+    Header "Conceptual Overviews"
+	Text "The current overviews are:"
+	Indent {
+    		Link {Worlds}			World:Main		Brk
+    		Link {Font Styles}		Styles:Main		Brk
+    		Link {Highlights and triggers}	Hilites:Main		Brk
+    		Link {Macros}			Macros:Main		Brk
+    		Link {Keyboard Bindings}	Bindings:Main		Brk
+    		Link {QuickButtons}		QuickButtons:Main	Brk
+    		Link {Preferences}		Prefs:Main
+	}
+}
+Page Main:Window "The Main Window" {
+    Header "The Main Window"
+	Text {The main window is split into five main regions.  They are, from top to bottom:} Para
+	Indent {
+		Link {The menu bar} Menu:Main Brk
+		Link {QuickButtons} QuickButtons:Main Pre {	}
+			Text { for pre-programmed commands.} Brk
+		Link {The display area} MainWin:DisplayArea Pre {	}
+			Text { where output from each world is displayed.} Brk
+		Link {The World Buttons} MainWin:WorldButtons Pre {	}
+			Text { which indicate staus for each world.} Brk
+		Link {The command area} MainWin:CommandArea Pre {	}
+			Text { where you enter commands.} Brk
+		Link {The status bar} MainWin:StatusBar Pre {	}
+			Text { where non-critical information is shown.} Brk
+	}
+}
+Page Main:QuickStart "The Quick Start Page" {
+    Header "The Quick Start Page" BNF "How to get up and running FAST!" Para
+	Header "Setting up a guest account and logging on" Brk
+	Text "1 Gathering clues" Brk
+	Indent {
+		Bullet Text {Use a web browser, or some such to find a site you'd like to visit.} Brk
+		Pre {	} Text {You might search for "MUCK and server"} Brk
+		Bullet Text {Find and jot down the connection details. These will be:} Brk
+		Indent {
+			Text "A server name." Brk
+			Text "A port number"
+		}
+		Text {You don't need anything more at this stage.}
+	}
+	Text "2 Create a New World (for a guest account)" Brk
+	Indent {
+		Bullet Text {Open the New World dialog with } Link {File->New World} World:New Brk
+		Bullet Text {Enter a name for the new World.} Brk
+		Bullet Text {In the host name box, enter the name of the server.} Brk
+		Bullet Text {In the port number, enter the port number for the MUCK.} Brk
+		Bullet Text {Click on the Add button.} Brk
+		Bullet Text {Click on the Done button to close the editor.}
+	}
+	Text "3 Connect to the new world" Brk
+	Indent {
+		Bullet Text {Open the } Link {File->Connect} World:Connect Text { dialog.} Brk
+		Bullet Text {Select the world you've just created.} Brk
+		Bullet Text {Click the Connect button.}
+	}
+	Text "4 Ready .. Set .. Go!" Brk
+	Indent {
+		Bullet Text {Wait ... patiently ... while the server connects.} Brk
+		Bullet Text {Wait for text to stop scrolling on the screen.} Brk
+		Bullet Text {At this stage, you might like to read the introductory text of the world to find out how to get a character name and password.} Brk
+		Bullet Text {If you wish to connect to a guest character, to see what the MUD is like, most systems will allow you to do so with the command:} Brk
+		Indent { 
+			Bold {connect guest guest} Brk
+		}
+	}
+	Text {Enjoy yourself :3}
+}
+Page Bindings:Main {Keyboard Bindings} {
+    Header "Keyboard Bindings" BNF {See also } Link {Macros} Macros:Main Para
+	Text {Keyboard Bindings are a means of attaching a script (which may be Tcl) to a single key press.} Para
+	Text {Keyboard Bindings are bound according to the } Link {name of the binding.} Bindings:Names Para
+	Indent {
+		Text {The general form is: <(mods)-Key-(key)>, where} Brk
+		Indent {
+			Text {(mods)} Pre {	} Defin {represents modifiers. e.g. Control} Brk
+			Text {(key)} Pre {	} Defin {represents a particular key} Brk
+		}
+		Text {For Example:} Brk
+		Indent {
+			Text {<Key-Return>} Pre {		} Defin {Return} Brk
+			Text {<Control-Key-Left>} Pre {	} Defin {ctrl-left} Brk
+			Text {<Control-Key-n>} Pre {		} Defin {ctrl-n} Brk
+		}
+	}
+	Header "Creating a keyboard binding"
+	Indent {
+		Bullet Text {Open the Bindings Editor with } Link {Options->Keyboard Bindings} Bindings:Dialog Brk
+		Bullet Text {Click on the New button.} Brk
+		Bullet Text {Select the checkboxes for the modifier keys that the keybind will require.} Brk
+		Bullet Text {Type the key to bind into the box to the right of the modifier checkboxes.} Brk
+		Bullet Text {In the script field, enter the commands for the key to send.} Brk
+		Bullet Text {Click on the Add button.} Brk
+		Bullet Text {Click on the Done button to close the editor.}
+	}
+}
+Page Bindings:Dialog {The Edit Keyboard Bindings Dialog} {
+    Header "The Edit Keyboard Bindings Dialog" BNF {Menu: Options->Keyboard Bindings} Brk
+    BNF {Overview: } Link {Keyboard Bindings} Bindings:Main Para
+	Text {The } Link {Naming of Bindings} Bindings:Names Text { is important.} Para
+	Text {To the left is a list of existing Keyboard Bindings.} Brk
+	Indent {
+		Text {Select one that you want to Update/Rename or Delete.}
+	}
+	Text {To the right is a dialog with 3 fields (and some helper controls for generating a binding name):} Brk
+	Indent {
+		Bold {Name:} Pre {	}
+			Defin {Type a new name to create/rename a binding.} Brk
+		Bold {Esc, Alt, } Arg {etc} Pre {	}
+			Defin {Select these modifiers to help generate a name.} Brk
+		Arg {Text Box} Pre {	}
+			Defin {Type a key in this to help generate a name.} Brk
+		Bold {Evaluate...} Pre {	}
+			Defin {This is to be checked (yes) if the script is Tcl.} Brk
+		Bold {Script} Pre {	}
+			Defin {The script to be Processed.} Brk
+	}
+	Text {Below there are five buttons:} Brk
+	Indent {
+		Bold {New} Pre {	}
+			Defin {To start the } Link {New Keyboard Bindings} Bindings:New Text { dialog.} Brk
+		Bold {Add} Pre {		}
+			Defin {To add a new binding from within this dialog.} Brk
+		Bold {Update/Rename} Pre { }
+			Defin {To change the script or name (or Tcl status) of an existing binding.} Brk
+		Bold {Delete} Pre {	}
+			Defin {To permanently delete a selected binding.} Brk
+		Bold {Done} Pre {	}
+			Defin {To exit without further changes.} Brk
+	}
+}
+Page Bindings:Names "Naming Keyboard Bindings" {
+    Header "Naming Keyboard Bindings"
+	Text {Keyboard Bindings are bound according to the name of the binding.} Para
+	Indent {
+		Text {The general form is: <(mods)-Key-(key)>, where} Brk
+		Indent {
+			Text {(mods)} Pre {	} Defin {represents modifiers. e.g. Control, Alt, or Shift} Brk
+			Text {(key)} Pre {	} Defin {represents a particular key} Brk
+		}
+		Text {For Example:} Brk
+		Indent {
+			Text {<Key-Return>} Pre {	} Defin {Return} Brk
+			Text {<Control-Key-Prior>} Pre {	} Defin {ctrl-left} Brk
+			Text {<Control-Key-n>} Pre {	} Defin {ctrl-n} Brk
+		}
+	}
+	Text {Valid keys for } Bold {<Key-(key)>} Text { bindings are:} Brk
+	Indent {
+		Text {F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 L1 L2 Escape} Brk
+		Text {quoteleft 1 2 3 4 5 6 7 8 9 0 minus equal BackSpace Tab} Brk
+		Text {q w e r t y u i o p bracketleft bracketright Return} Brk
+		Text {a s d f g h j k l semicolon quoteright} Brk
+		Text {z x c v b n m comma period slash backslash space} Brk
+		Text {asciitilde exclam at numbersign dollar percent asciicircum ampersand} Brk
+		Text {asterisk parenleft parenright underscore plus} Brk
+		Text {Q W E R T Y U I O P braceleft braceright} Brk
+		Text {A S D F G H J K L colon quotedbl} Brk
+		Text {Z X C V B N M less greater question bar} Brk
+		Text {Insert Delete Home End Prior Next Left Down Right Up}
+	}
+	Text {Valid keys for } Bold {<Control-Key-(key)>} Text { bindings are:} Brk
+	Indent {
+		Text {F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 L1 L2 Escape} Brk
+		Text {quoteleft 1 2 3 4 5 6 7 8 9 0 minus equal BackSpace Tab} Brk
+		Text {q w e r t y u i o p bracketleft bracketright Return} Brk
+		Text {a s d f g h j k l semicolon quoteright} Brk
+		Text {z     v b n m comma period slash backslash space} Brk
+		Text {asciitilde exclam at numbersign dollar percent asciicircum ampersand} Brk
+		Text {asterisk parenleft parenright underscore plus} Brk
+		Text {Q W E R T Y U I O P braceleft braceright} Brk
+		Text {A S D F G H J K L colon quotedbl} Brk
+		Text {Z     V B N M less greater question bar} Brk
+		Text {Insert Delete Home End Prior Next Left Down Right Up}
+	}
+	Text {Valid keys for } Bold {<Alt-Key-(key)>} Text { bindings are:} Brk
+	Indent {
+		Text {F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 L1 L2 Escape} Brk
+		Text {quoteleft 1 2 3 4 5 6 7 8 9 0 minus equal BackSpace Tab} Brk
+		Text {q w   r t y u i   p bracketleft bracketright Return} Brk
+		Text {a s d   g   j k l semicolon quoteright} Brk
+		Text {z x c   b n m comma period slash backslash space} Brk
+		Text {asciitilde exclam at numbersign dollar percent asciicircum ampersand} Brk
+		Text {asterisk parenleft parenright underscore plus} Brk
+		Text {Q W   R T Y U I   P braceleft braceright} Brk
+		Text {A S D   G   J K L colon quotedbl} Brk
+		Text {Z X C   B N M less greater question bar} Brk
+		Text {Insert Delete Home End Prior Next Left Down Right Up}
+	}
+	Text {The above list was hacked from the source ^_^} Brk
+}
+Page Bindings:New {The New Keyboard Bindings Dialog} {
+    Header "The New Keyboard Bindings Dialog" BNF {Menu: Options->Keyboard Bindings->New} Brk
+    BNF {Overview: } Link {Keyboard Bindings} Bindings:Main Para
+	Text {The } Link {Naming of Bindings} Bindings:Main Text { is important.  Luckily there's an easy way to generate that name.} Para
+	Text {There are 3 fields (with some helper controls under the name field):} Brk
+	Indent {
+		Bold {Name:} Pre {	}
+			Defin {Type a new name to create a binding.} Brk
+		Bold {Esc, Alt, } Arg {etc} Pre {	}
+			Defin {Select these modifiers to help generate a name.} Brk
+		Arg {Text Box} Pre {	}
+			Defin {Type a key in this to help generate a name.} Brk
+		Bold {Evaluate...} Pre {	}
+			Defin {This is to be checked (yes) if the script is Tcl.} Brk
+		Bold {Script} Pre {	}
+			Defin {The script to be Processed.} Brk
+	}
+	Text {Below there are two buttons:} Brk
+	Indent {
+		Bold {cancel} Pre {	}
+			Defin {To exit the dialog without change.} Brk
+		Bold {Add} Pre {		}
+			Defin {To add a new binding.} Brk
+	}
+}
+Page Commands:Main "Commands Overview" {
+    Header "Commands Overview"
+	Text {Commands .. yadda yadda yadda ...} Para
+	Text {See } Link {Macros} Macros:Main Brk
+	Text {See } Link {Command List} Commands:List Brk
+}
+Page Commands:List "Commands List" {
+    Header "Commands List" BNF "A list of some of the more useful commands" Para
+	Bold {/echo "stuff"} Pre {		} Defin {sends "stuff" to the } Link {display area} MainWin:DisplayArea Brk
+	Bold {/statbar 0 "stuff"} Pre {		} Defin {sends "stuff" to the } Link {status bar} MainWin:StatusBar Brk
+	Bold {/statbar n "stuff"} Pre {		} Defin {display "stuff" for n seconds, then erase} Brk
+	Bold {/bind add key {script}} Pre {		} Defin {Add a } Link {key bind} Bindings:Main Brk
+	Bold {/qbutton:showbar} Pre {		} Defin {Show } Link {QuickButton} QuickButtons:Main Text { bar} Brk
+	Bold {/qbutton:hidebar} Pre {		} Defin {Hide } Link {QuickButton} QuickButtons:Main Text { bar} Brk
+	Bold {/connect "World"} Pre {		} Defin {connect to world} Brk
+	Bold {/world:edit "World"} Pre {		} Defin {edit world} Brk
+	Bold {/prefs:get "pref"} Pre {		} Defin {get pref value} Brk
+	Bold {/prefs:set "pref" "value"} Pre {	} Defin {set pref value} Brk
+	Bold {/world:get charname "World"} Pre {		} Defin {get name in world} Brk
+	Bold {/world:get password "World"} Pre {		} Defin {get password in world} Brk
+	Bold {/world:get host "World"} Pre {		} Defin {get hostname for world} Brk
+	Bold {/world:get port "World"} Pre {		} Defin {get port number for world} Brk
+	Bold {/sendln "Text"}	Pre {		} Defin {Sends Text to the current World} Brk
+	Bold {/socket:sendln "World" "Text"} Pre {		} Defin {Send text to given world} Brk
+	Bold {/socket:current} Pre {			} Defin {returns the current world name} Brk
+	Bold {/socket:disconnect "World"} Pre {			} Defin {disconnects the world named World} Brk
+	Bold {/close [World]} Pre {		} Defin {disconnects and closes (current) World} Brk
+	Bold {/bell} Pre {			} Defin {Rings the player's bell} Brk
+	Bold {match_by_name val list} Pre {		} Defin {returns index into list base 0} Brk
+
+}
+Page Find:Dialog "The Find Dialog" {
+    Header "The Find Dialog" BNF {Menu: Edit->Find, Key: ctrl-F} Para
+	Text {Find searches through the } Link {display area.} MainWin:DisplayArea { for text.} Brk
+	Indent {
+		Text {First, there is the } Bold {Pattern} Text {. This is the text to be searched for.} Brk
+		Text {Then there are the check boxes for Ignore Case and Regular Expression.} Brk
+		Text {Then there are the radio buttons selecting search up or search down.} Brk
+		Text {And finally, the buttons: Find Next and Cancel.} Para
+		Text {By default, the search begins at the bottom of the } Link {display area.} MainWin:DisplayArea { and searches upwards for the next match.} Brk
+		Text {By default, this is an ignore-case and non-regular-expression (i.e. normal) search.} Brk
+	}
+	Text {What about Regular Expressions?} Brk
+	Indent {
+		Text {That's a big question.} Brk
+		Text {Regular expressions are a common *nix feature and are a standard part of Tcl.} Brk
+		Text {They allow complex searches for text 'like' the Pattern.} Brk
+		Text {If you want to understand more, search for "regular expressions" on the net.} Brk
+		Text {I recommend it.} Brk
+	}
+}
+Page Hilites:Main "Highlights & Triggers" {
+    Header "Highlights & Triggers" BNF {See also: } Link {Font Styles} Styles:Main Para
+	Text {Trebuchet can watch for words or arbitrary patterns in the text a MUD sends to it.  When it sees one of these patterns, it can hilite the line (or just the matching words) with a } Link {font style} Styles:Main Text {, or it can automatically run a script, or send commands back to the MUD.} Para
+	Header "Creating a highlight with beep"
+	Indent {
+		Bullet Text {Open the Trigger Editor with } Link {Options->Highlights & Triggers} Hilites:Dialog Brk
+		Bullet Text {Click on the New button.} Brk
+		Bullet Text {Enter a name for the new trigger.} Brk
+		Bullet Text {Select a kind of match using the Lines combo box.} Brk
+		Bullet Text {In the Pattern field type a pattern to look for.} Brk
+		Bullet Text {Select a style using the Apply Style combo box.} Brk
+		Bullet Text {Select the Beep check box.} Brk
+		Bullet Text {Click on the Add button.} Brk
+		Bullet Text {Click on the Done button to close the editor.} Brk
+	}
+	Header "Creating a triggered script"
+	Indent {
+		Bullet Text {Open the Trigger Editor with } Link {Options->Highlights & Triggers} Hilites:Dialog Brk
+		Bullet Text {Click on the New button.} Brk
+		Bullet Text {Enter a name for the new trigger.} Brk
+		Bullet Text {Select a kind of match using the Lines combo box.} Brk
+		Bullet Text {In the Pattern field type a pattern to look for.} Brk
+		Bullet Text {Select 'none' using the Apply Style combo box.} Brk
+		Bullet Text {Press the 'Set script..' button.} Brk
+		Bullet Text {Enter the main box, enter the commands to send to the world.} Brk
+		Bullet Text {Click the Done button.} Brk
+		Bullet Text {Click on the Add button.} Brk
+		Bullet Text {Click on the Done button to close the editor.} Brk
+	}
+}
+Page Hilites:Dialog "The Highlights & Triggers Edit Dialog" {
+    Header "The Highlights & Triggers Edit Dialog" BNF "Menu: Options->Highlights & Triggers" Brk
+    BNF "Overview: " Link {Hightlights & Triggers} Hilites:Main Para
+	Text {To the left is a list of existing triggers.} Brk
+	Indent {
+		Text {Select one that you want to Update/Rename or Delete.}
+	}
+	Text {To the right is a dialog with 13 fields and 2 buttons:} Brk
+	Indent {
+		Text {A Name group:} Brk
+		Indent {
+			Bold {Name:} Pre {		}
+				Text {Type a new name to create/rename a trigger.} Brk
+			Bold {Category:} Pre {	} Text {this has me foxed!}
+		}
+		Text {A Matching group: these select when the trigger happens.} Brk
+		Indent {
+			Bold {Lines:} Pre {		}
+				Text {selects the kind of matching operation used.} Brk
+			Bold {Pattern:} Pre {		}
+				Text {what to look for.} Brk
+			Bold {Case sensitive:} Pre {	} Text { interpretation of the pattern.} Brk
+			Bold {Enabled:} Pre {		}
+				Text {allows you to switch it off without deleting it.} Brk
+			Bold {Priority:} Pre {		}
+				Text {decides the order of search through the triggers.} Brk
+			Bold {Check remaining hilites:} Text { select to allow further searching.} Brk
+			Bold {%chance:} Pre {	} Text {Allows an element of chance.}
+		}
+		Text {A Hightlight group: this selects the } Link {Font Style} Styles:Main Text { to be applied to the incoming text.} Brk
+		Indent {
+			Bold {Apply Style:} Pre {	} Text {selects the style to apply.} Brk
+			Bold {Only to Matched Words:} Text { clear means the whole line.} Brk
+			Bold {Edit Styles...} Pre {	} Text {button to } Link {edit the styles} Styles:Dialog
+		}
+		Text {An Actions group: to select what actions are done, if any.} Brk
+		Indent {
+			Bold {Beep:} Pre {		} Text {beep if checked} Brk
+			Bold {Script is TCL:} Pre {	} Text {how to interpret script.} Brk
+			Bold {Set script...} Pre {	} Text {button to edit the script.}
+		}
+	}
+	Text {Below there are five buttons:} Brk
+	Indent {
+		Bold {New} Pre {	}
+			Text {To start the } Link {New Highlights & Triggers} Hilites:New Text { dialog.} Brk
+		Bold {Add} Pre {		}
+			Text {To add a new trigger from within this dialog.} Brk
+		Bold {Update/Rename} Pre { }
+			Text {To change the details of an existing trigger.} Brk
+		Bold {Delete} Pre {	}
+			Text {To permanently delete a selected trigger.} Brk
+		Bold {Done} Pre {	}
+			Text {To exit without further changes.} Brk
+	}
+}
+Page Hilites:New {The New Highlights & Triggers Dialog} {
+    Header "The New Highlights & Triggers Dialog" BNF {Menu: Options->Highlights & Triggers->New} Brk
+    BNF {Overview: } Link {Highlights & Triggers} Hilites:Main Para
+	Text {To the right is a dialog with 13 fields and 2 buttons:} Brk
+	Indent {
+		Text {A Name group:} Brk
+		Indent {
+			Bold {Name:} Pre {		}
+				Text {Type a new name to create/rename a trigger.} Brk
+			Bold {Category:} Pre {	} Text {this has me foxed!}
+		}
+		Text {A Matching group: these select when the trigger happens.} Brk
+		Indent {
+			Bold {Lines:} Pre {		}
+				Text {selects the kind of matching operation used.} Brk
+			Bold {Pattern:} Pre {		}
+				Text {what to look for.} Brk
+			Bold {Case sensitive:} Pre {	} Text { interpretation of the pattern.} Brk
+			Bold {Enabled:} Pre {		}
+				Text {allows you to switch it off without deleting it.} Brk
+			Bold {Priority:} Pre {		}
+				Text {decides the order of search through the triggers.} Brk
+			Bold {Check remaining hilites:} Text { select to allow further searching.} Brk
+			Bold {%chance:} Pre {	} Text {Allows an element of chance.}
+		}
+		Text {A Hightlight group: this selects the } Link {Font Style} Styles:Main Text { to be applied to the incoming text.} Brk
+		Indent {
+			Bold {Apply Style:} Pre {	} Text {selects the style to apply.} Brk
+			Bold {Only to Matched Words:} Text { clear means the whole line.} Brk
+			Bold {Edit Styles...} Pre {	} Text {button to } Link {edit the styles} Styles:Dialog
+		}
+		Text {An Actions group: to select what actions are done, if any.} Brk
+		Indent {
+			Bold {Beep:} Pre {		} Text {beep if checked} Brk
+			Bold {Script is TCL:} Pre {	} Text {how to interpret script.} Brk
+			Bold {Set script...} Pre {	} Text {button to edit the script.}
+		}
+	}
+	Text {Below there are two buttons:} Brk
+	Indent {
+		Bold {cancel} Pre {	}
+			Text {To exit the dialog without change.} Brk
+		Bold {Add} Pre {		}
+			Text {To add a new trigger.} Brk
+	}
+}
+Page MainWin:DisplayArea "The World Display Area" {
+    Header "The World Display Area"
+	Text {The World Display Area shows the output from each world, one world
+	  at a time, with styles applied to the text.  World buttons at the bottom
+	  let you know which world is currently being displayed, the connection
+	  status of each world, and which worlds have new text waiting to be
+	  displayed.} Para
+	Text {The world button with the black outline is the one currently being
+	  displayed.} Para
+	Text {The color of the light on a world button indicates whether that
+	  world is connected (green), disconnected (red), or just now attempting
+	  to connect (yellow).} Para
+	Text {If a world has received new text that hasn't been displayed to the
+	  user yet, then the light for that world will blink.  This can happen
+	  in the currently displayed world if new text was recieved while the
+	  user was reading scrollback, or if } Link {text paging} Prefs:Paging
+	  Text { has stopped the display scrolling because a full screen of
+	  text has been displayed since the last user input.} Para
+}
+Page MainWin:WorldButtons "The World Buttons" {
+    Header "The World Buttons"
+	Text {The World Buttons are a quick and convenient indicator of the status of connections, especially when multi-mucking (playing in several worlds at once.} Para
+	Text {When connected to a world, a button will appear on the gray bar between the display area and the command area. This button has a small light, which is red, green or flashing:} Brk
+	Indent {
+		Bold {Green} Text { indicates an open and active connection.} Brk
+		Bold {Red} Text { indicates a disconnected world.} Brk
+		Bold {Flashing} Text { indicates a world with activity that you haven't yet seen.} Brk
+	}
+	Text {Also, you can right-click on a world button to bring up a context menu:} Brk
+	Indent {
+		Bold {Reconnect World} Pre {	} Text {quickly get back in} Brk
+		Bold {Disconnect World} Pre {	} Text {get out without losing the text on the screen} Brk
+		Bold {Disconnect & Close World} Pre { } Text {get out and remove both the world button and the text from the screen.}
+	}
+}
+Page MainWin:CommandArea "The Command Entry Area" {
+    Header "The Command Entry Area"
+	Text {The Command Entry area is where the user types in commands to be
+	  sent to the current world.  Local Trebuchet commands can also be entered
+	  here.} Para
+	Header {/commands}
+	Text {If a command starts with a '/' character, then Trebuchet will assume
+	  that it is either an internal TCL command, or it is a user entered }
+	  Link "macro" Macros:Main Text {.} Para
+	Text {If there is an internal TCL procedure that is named the same as
+	  the first word of the line (including the '/'), then that TCL command
+	  will be executed, with the rest of the line passed as arguments to it.
+	  ie.:} Para
+	Indent {
+		Bold {/echo foo bar}
+	}
+	Text {...will run the TCL procedure /echo with the two arguments "foo" and
+	  "bar".} Para
+	Text {If there is no matching TCL procedure, then Trebuchet will look to
+	  see if there is a macro with the given name (Not including the '/'
+	  character.)  ie:} Para
+	Indent {
+		Bold {/foo bar baz}
+	}
+	Text {...will trigger the macro named foo, passing it "bar" and "baz" as
+	  %1 and %2.  If there is neither a matching TCL procedure or
+	  macro, then an error will be given.} Para
+	Text {If you want to send a line to the given world that starts with a
+	  '/' character, simply add a second '/' to the beginning of the line.
+	  ie:} Para
+	Indent {
+		Bold {//foobar baz qux}
+	}
+	Text {...will strip the extra / of the beginning of the line, and send 
+	  "} Bold {/foobar baz qux} Text {" to the current world without any
+	  preparsing.} Para
+	Header {\commands}
+	Text {If a command starts with a '\' character, then Trebuchet will
+	  attempt to execute any TCL code embedded in the line inside of []s,
+	  and expand any variables starting with $, then it will send the results
+	  to the current world.  This is useful in obscure situations, such as
+	  telling someone the time, or what your Trebuchet settings are.  ie:} Para
+	Indent {
+        Bold {\say The time is: [clock format [clock seconds]]} Brk
+        Bold {\pose 's Trebuchet version is: $treb_version} Brk
+        Bold {\page revar=The macro is: [/macro:list foobar]} Brk
+	}
+	Text {Obviously, you want to be careful with this, so that you don't
+	  quote your world passwords to someone.}
+}
+Page MainWin:StatusBar "The Status Bar" {
+    Header "The Status Bar"
+	Text {The Status bar is located at the very bottom of the main window.}
+	  Para
+	Text {The left side of the status bar is used to display messages of a
+	  non-critical and short nature.  The right side of the status bar has
+	  indicators for the current cursor position in the command entry area,
+	  and for whether or not the current world is logging to a file.}
+}
+Page Macros:Main "Macros Overview" {
+    Header "Macros Overview" BNF "The power within." Para
+	Text {Macros are shortcuts for sending long or complicated commands to the current world, or for running short TCL scripts.} Brk
+	Text {Unlike a } Link {QuickButton} QuickButtons:Main Text {, a macro can accept arguments to alter what it does.} Brk
+	Text {Macros can also be invoked within } Link {triggers} Hilites:Main Text {, } Link {keybinds} Bindings:Main Text {, and even other macros.} Brk
+	Indent {
+		Link {Simple macros} Macros:Simple Brk
+		Link {Macros that takes arguments} Macros:Substitutions Brk
+		Link {Macros that execute TCL code} Macros:TCL Brk
+	}
+	Text {Although they may seem daunting, simple macros and keyboard bindings can make light work of repetitive tasks and are well worth the effort of trying out.} Brk
+	Text {After a while, you'll never know how you managed without them.} Para
+}
+Page Macros:Simple "Simple Macros" {
+    Header "Simple Macros" BNF "A foot on the ladder." Para
+    Text {In the simplest form, a macro will simply send a line of text to
+	  the world that the player is currently connected to.  For example,
+	  if the user typed:}
+    Indent {
+        Bold {/foo}
+    }
+    Text {Trebuchet might expand that macro, and send the text:}
+    Indent {
+        Bold {:dances around yelling,  "Foo!  Bar!"}
+    }
+    Text {...to the current world.  A macro might also expand into multiple
+	      commands, for performing more than one action at a time.  This is
+		  good for things like commands to take you to a specific place in
+		  the current world.} Para
+	Header "Creating a simple Macro"
+	Indent {
+		Bullet
+		Text {Open the Macro Editor with the } Link {Option->Macros} Macros:Dialog Text { menu item.} Brk
+		Bullet
+		Text {Click on the New button.} Brk
+		Bullet
+		Text {Enter a name for the new macro in the name field.} Brk
+		Bullet
+		Text {In the script field, enter the commands for the macro to send.}
+		  Brk
+		Bullet
+		Text {Click on the Add button.} Brk
+		Bullet
+		Text {Close the Macro Editor.} Para
+	}
+	Text {Next, have a look at } Link {Macros that takes arguments} Macros:Substitutions Brk
+}
+Page Macros:Substitutions "Macros with Substitutions" {
+    Header "Macros that take arguments." BNF "Going up in the World." Para
+    Text {More complicated macros can take arguments and
+          substitute them into their output.  For example:}
+    Indent {
+        Bold {/foo Quux Fie}
+    }
+    Text {might be expanded out, and sent to the current world as:}
+    Indent {
+        Bold {:dances around yelling, "Fie, Quux, Fie!  Foo!  Bar!"}
+    }
+	Header "Substitutions"
+	Text {When you define the text of what a macro will send, you can include
+	      substitution codes that will be replaced by the arguments passed to
+		  the macro at invocation time.  The codes are as follows:}
+	Indent {
+		Bold {%%} Pre {	} Text {a literal '%'.} Brk
+		Bold {%1} Pre {	} Text {the first word passed to the macro.} Brk
+		Bold {%9} Pre {	} Text {the ninth word passed to the macro.} Brk
+		Bold {%*} Pre {	} Text {all args passed to the macro.} Brk
+		Bold {%!} Pre {	} Text {all args passed to the macro, escaped for TCL.}
+	}
+	Text {For instance, the above } Bold {/foo}
+	Text { example, was achieved with the following text macro script.}
+	Indent {
+		Bold {:dances around, yelling, "%2, %1, %2!  Foo!  Bar!"}
+	}
+	Header "Creating a Macro"
+	Indent {
+		Bullet
+		Text {Open the Macro Editor with the } Link {Option->Macros} Macros:Dialog Text { menu item.} Brk
+		Bullet
+		Text {Click on the New button.} Brk
+		Bullet
+		Text {Enter a name for the new macro in the name field.} Brk
+		Bullet
+		Text {In the script field, enter the text to send, with substitutions.}
+		  Brk
+		Bullet
+		Text {Click on the Add button.} Brk
+		Bullet
+		Text {Close the Macro Editor.}
+	}
+}
+Page Macros:TCL "Macros as TCL Scripts" {
+    Header "Macros as TCL Scripts" BNF "On a clear day..." Para
+    Text {In the most complex form, macros can be interpreted as raw TCL
+          scripts.  This makes them VERY powerful, as they can perform
+          complex actions, create a GUI user interface or even a small
+          client/server application.  } Para
+	Text {Here are a number of useful things to read to help exploit that power:} Brk
+	Indent {
+		Link {TCL for beginners} Macros:TCL:Beginners Pre {		} Text {Rather important at this stage.} Brk
+		Link {Basic I/O capabilities} Macros:TCL:BasicIO Brk
+		Link {More TCL: Macros with memories} Macros:TCL:Memory Brk
+		Link {Make your own dialog boxes} Macros:TCL:Dialogs Brk
+		Link {Go insane with the power of MCP} Macros:TCL:MCP Pre {	} Text {A client/server protocol!} Brk
+		Text {Hey, maybe it would help if * I * knew any of this stuff. [Pash]}
+	}
+	Header "Creating a TCL script Macro"
+	Indent {
+		Bullet
+		Text {Open the Macro Editor with the } Link {Option->Macros} Macros:Dialog Text { menu item.} Brk
+		Bullet
+		Text {Click on the 'New' button.} Brk
+		Bullet
+		Text {Enter a name for the new macro in the name field.} Brk
+		Bullet
+		Text {Click on the 'Evaluate as TCL' checkbox to set it.} Brk
+		Bullet
+		Text {In the script field, enter the TCL script to run.} Brk
+		Bullet
+		Text {Click on the Add button.} Brk
+		Bullet
+		Text {Close the Macro Editor.}
+	}
+}
+Page Macros:TCL:Beginners "TCL for beginners" {
+    Header "TCL for beginners" BNF "You can't do the fun stuff without it. Sorry." Para
+	Text {Todo} Brk
+}
+Page Macros:TCL:BasicIO "Macros with basic IO" {
+    Header "Macros with basic IO" BNF "Your code can talk to the animals." Brk
+    BNF "Well, furries then." Para
+	Bold {Output to player only} Pre {	} Text {Talking to yourself.} Brk
+	Indent {
+		Bold {/echo "stuff"} Pre {		} Text {sends "stuff" to the } Link {display area} MainWin:DisplayArea Brk
+		Bold {/statbar 0 "stuff"} Pre {	} Text {sends "stuff" to the } Link {status bar} MainWin:StatusBar Brk
+	}
+	Bold {Output to MUCK} Pre {		} Text {Talk to the world.} Brk
+	Indent {
+	}
+	Bold {Input from player} Brk
+	Bold {Input from the MUCK} Brk
+	Bold {Whatever} Brk
+	Indent {
+		Bold "/bind add key {TCL}" Pre {	} Text {Add a key bind} Brk
+		Bold "/qbutton:showbar" Pre {	} Text {Show QuickButton bar} Brk
+		Bold "/qbutton:hidebar" Pre {	} Text {Hide QuickButton bar} Brk
+		Bold "/connect World" Pre {	} Text {connect to world} Brk
+		Bold "/world:edit World" Pre {	} Text {edit world} Brk
+	}
+}
+Page Macros:TCL:Memory "Macros with Memories" {
+    Header "Macros with Memories" BNF "Macros don't have to be one shot wonders." Para
+	Text {Todo} Brk
+}
+Page Macros:TCL:Dialogs "Macros with dialogs" {
+    Header "Macros with dialogs" BNF "Idiot boxes at your beck and call, courtesy of Tk." Para
+	Text {Todo} Brk
+}
+Page Macros:TCL:MCP "MUD Client Protocol" {
+    Header "MUD Client Protocol" BNF "Building client/server apps out of [a] MUD!" Para
+	Text {Goto } Bold {http://www.belfry.com/fuzzball/trebuchet/mcp.html} Brk
+}
+Page Macros:Dialog {The Edit Macros Dialog} {
+    Header "The Edit Macros Dialog" BNF {Menu: Options->Macros} Brk
+    BNF {Overview: } Link {Macros} Macros:Main Para
+	Text {To the left is a list of existing Macros.} Brk
+	Indent {
+		Text {Select one that you want to Update/Rename or Delete.}
+	}
+	Text {To the right is a dialog with 3 fields:} Brk
+	Indent {
+		Bold {Name:} Pre {	}
+			Defin {Type a new name to create/rename a macro.} Brk
+		Bold {Evaluate...} Pre {	}
+			Defin {This is to be checked (yes) if the script is Tcl.} Brk
+		Bold {Script} Pre {	}
+			Defin {The script to be Processed.} Brk
+	}
+	Text {Below there are five buttons:} Brk
+	Indent {
+		Bold {New} Pre {	}
+			Defin {To start the } Link {New Macros} Macros:New Text { dialog.} Brk
+		Bold {Add} Pre {		}
+			Defin {To add a new macro from within this dialog.} Brk
+		Bold {Update/Rename} Pre { }
+			Defin {To change the script or name (or Tcl status) of an existing macro.} Brk
+		Bold {Delete} Pre {	}
+			Defin {To permanently delete a selected macro.} Brk
+		Bold {Done} Pre {	}
+			Defin {To exit without further changes.} Brk
+	}
+}		
+Page Macros:New {The New Macros Dialog} {
+    Header "The New Macros Dialog" BNF {Menu: Options->Macros->New} Brk
+    BNF {Overview: } Link {Macros} Macros:Main Para
+	Text {There are 3 fields:} Brk
+	Indent {
+		Bold {Name:} Pre {	}
+			Text {Type a new name to create a macro.} Brk
+		Bold {Evaluate...} Pre {	}
+			Text {This is to be checked (yes) if the script is Tcl.} Brk
+		Bold {Script} Pre {	}
+			Text {The script to be Processed.} Brk
+	}
+	Text {Below there are two buttons:} Brk
+	Indent {
+		Bold {cancel} Pre {	}
+			Text {To exit the dialog without change.} Brk
+		Bold {Add} Pre {		}
+			Text {To add a new macro.} Brk
+	}
+}		
+Page Menu:Main "The Main Window Menu Bar" {
+    Header "The Main Window Menu Bar"
+	Text {The main window has the following menus:} Brk
+	Indent {
+		Link {File menu} Menu:File
+			Pre {	} Defin {which connects worlds, controls logging and sends files.}	Brk
+		Link {Edit menu} Menu:Edit
+			Pre {	} Defin {which handles cut/paste, find and Tcl editing commands.} Brk
+		Link {View menu} Menu:View
+			Pre {	} Defin {which allows optional information to be displayed.} Brk
+		Link {Option menu} Menu:Option
+			Pre {	} Defin {which allows you to customise Trebuchet.} Brk
+		Link {Help menu} Menu:Help
+			Pre {	} Defin {where (some of) your questions have answers.} Brk
+	}
+}
+Page Menu:File "The File Menu" {
+    Header "The File Menu"
+	Text {The File menu has the following entries:} Para
+	Indent {
+		Link {New World} World:New
+			Pre {		} Text {which creates a World with (if you wish) character login details.} Brk
+		Link {Edit Worlds} World:Edit
+			Pre {		} Text {which edits information on existing worlds.} Brk
+		Link {Connect World} World:Connect
+			Pre {	} Text {which connects you to an existing world.} Brk
+		Bold {Disconnect World}
+			Pre {	} Text {which disconnects (QUITs) the current World, but keeps the window open.} Brk
+		Bold {Close World}
+			Pre {		} Text {which disconnects the current World and closes its window.} Brk
+		Bold {Start Logging}			Brk
+		Bold {Send File}			Brk
+	}
+}
+Page Menu:Edit "The Edit Menu" {
+    Header "The Edit Menu"
+	Text {The Edit menu has the following clipboard commands:} Brk
+	Indent {
+		Bold {Cut} Pre {		} Text {if text is selected in the } Link {command entry area} MainWin:CommandArea Text { then it is copied to the clipboard and deleted. } Brk
+		Bold {Copy} Pre {	} Text {copies the selected text to the clipboard.} Brk
+		Bold {Paste} Pre {	} Text {copies the clipboard contents to the } Link {command entry area.} MainWin:CommandArea Brk
+		Bold {Delete} Pre {	} Text {if text is selected in the } Link {command entry area} MainWin:CommandArea Text { then it is deleted without being copied to the clipboard.} Brk
+	}
+	Text {The other entries are:} Brk
+	Indent {
+		Link {Find... } Find:Dialog
+			Pre {		} Text {Search in the } Link {display area.} MainWin:DisplayArea {for text.} Brk
+	}
+	Text {and for the criminally insane:} Brk
+	Indent {
+		Link {Edit TCL Proc...} Edit:TclProc
+			Pre {	} Text {Edits the internals of Trebuchet!} Brk
+		Pre {			} Bold {Do not use this. It is evil!} Brk
+	}
+}
+Page Menu:View "The View Menu" {
+    Header "The View Menu"
+	Text {The View menu has the following entries:} Brk
+	Indent {
+		Bold {Scratchpad} Pre {		} Text {allowing you to make notes.} Brk
+		Bold {Process List} Pre {		} Text {allowing you to view or kill running processes.} Brk
+		Link {QuickButtons Toolbar} QuickButtons:Dialog
+			Pre {	} Text {rendering rodents rapid realtime reponse.} Brk
+	}
+}
+Page Menu:Option "The Option Menu" {
+    Header "The Option Menu"
+	Text {You can add functionality to Trebuchet using:} Brk
+	Indent {
+		Link {QuickButtons} QuickButtons:Dialog
+			Pre { } Defin {Commands at the click of a button.} Brk
+		Link {Macros} Macros:Dialog
+			Pre {	 } Defin {Macro commands you can type.} Brk
+		Link {Highlights} Hilites:Dialog
+			Pre {	 } Defin {Highlight or respond to world text automatically.} Brk
+		Link {Font Styles} Styles:Dialog
+			Pre {	 } Defin {Customize text fonts used for hilites.} Brk
+		Link {Key Bindings} Bindings:Dialog
+			Pre {	} Defin {Commands at the press of a key.} Brk
+	}
+	Text {Customization is handled with:} Brk
+	Indent {
+		Link {Preferences} Prefs:Dialog
+			Pre {	  } Defin {Various adjustments to the behaviour of Trebuchet.} Brk
+		Link {Startup Script} Prefs:Startup
+			Pre { } Defin {A Tcl script to run when Trebuchet starts.} Brk
+	}
+	Text {Never forgetting:} Brk
+	Indent {
+		Bold {Save Preferences} Defin {	} Text {without which, none of the above are saved!}
+	}
+	
+}
+Page Menu:Help "The Help Menu" {
+    Header "The Help Menu"
+	Text {The main help items are:} Brk
+	Indent {
+		Bold {Check Network for Updates...} Pre {	}
+			Text {The easiest way to stay current that there is. :P} Brk
+		Link {Help Topics..} Main Pre {	}
+			Text {The .. um .. help file.} Brk
+	}
+	Text {Further information is available:} Brk
+	Indent {
+		Bold {Trebuchet FAQ} Pre {	}
+			Text {The online FAQ. Full of good stuff.} Brk
+		Bold {Copyright and Warranty} Pre {	}
+			Text {The GNU GPL V2 1991. Full of good legal stuff.} Brk
+		Bold {Bug Reporting} Pre {		}
+			Text {The way to get your bugs squished *fast* (kind of).} Brk
+	}
+	Text {And finally..} Brk
+	Indent {
+		Bold {About...} Pre {		}
+			Text {Quick version information.} Brk
+	}
+}
+Page Prefs:Main "Preferences" {
+   Header "Preferences" BNF "Your own private Trebuchet." Para
+	Text {todo}
+}
+Page Prefs:Dialog "The Main Preferences Dialog" {
+    Header "The Main Preferences Dialog" BNF "Menu: Options->Preferences" Para
+	Text {There are Five tabs in the dialog box:} Brk
+	Indent {
+		Link {Fonts} Prefs:Fonts Pre {	}
+			Text {redefines the basic Styles.} Brk
+		Link {Display} Prefs:Display Pre {	} Text {alters display preferences.} Brk
+		Link {Input} Prefs:Input Pre {	} Text {alters input/history preferences.} Brk
+		Link {Http} Prefs:Http Pre {		} Text {sets a web proxy.} Brk
+		Link {Misc} Prefs:Misc Pre {	} Text {sets the other preferences.} Brk
+	}
+	Text {There are three buttons at the bottom of the dialog:} Brk
+	Indent {
+		Bold {OK} Pre {		} Text {applies changes and quits the box.} Brk
+		Bold {Cancel} Pre {	} Text {quits the box without applying anything.} Brk
+		Bold {Apply} Pre {	} Text {applies changes without quitting.}
+	}
+	Text {Remember to } Bold {Options->Save Preferences} Text { before quitting Trebuchet.} Brk
+}
+Page Prefs:Fonts "Font Preferences" {
+    Header "Font Preferences" BNF "Menu: Options->Preferences->Fonts" Para
+	Text {There are four buttons:} Brk
+	Indent {
+		Bold {Set Normal} Brk
+		Bold {Set Hilite} Brk
+		Bold {Set Error} Brk
+		Bold {Set Result}
+	}
+	Text {Pressing any of these will start the } Link {New Style} Styles:New Text { dialog, preloaded with the font named on the button.} Brk
+}
+Page Prefs:Display "Display Preferences" {
+    Header "Display Preferences" BNF "Menu: Options->Preferences->Display" Para
+	Text {This tab affects the display, especially the } Link {The display area.} MainWin:DisplayArea Brk
+	Indent {
+		Bold {Maximum scrollback length} Brk
+		Pre {	} Text {is the behind-the-scenes size of the display area.} Brk
+		Link {Stop Scrolling when display fills} Prefs:Paging Brk
+		Pre {	} Text {helps you avoid missing events when you're busy.} Brk
+		Bold {Enable jump-scrolling} Brk
+		Bold {Visual bell} Brk
+		Pre {	} Text {pops up a dialog box instead of just beeping.} Brk
+		Bold {Flash window title on activity when backgrounded} Brk
+		Pre {	} Text {clearing this stops Trebuchet constantly nagging.}
+	}
+}
+Page Prefs:Input "Input Preferences" {
+    Header "Input Preferences" BNF "Menu: Options->Preferences->Input" Para
+	Text {This tab deals with the input of text, and display of input.} Brk
+	Indent {
+		Bold {Maximum command history length} Brk
+		Pre {	} Text {how far back <Control-Key-p> can go.} Brk
+		Bold {Lines to search for word completion} Brk
+		Bold {Echo commands to display} Brk
+		Pre {	} Text {Set, the input text appears in the display area.} Brk
+		Bold {Don't send blank lines} Brk
+		Pre {	} Text {Set, blank lines are not sent to the server.} Brk
+		Bold {Echo blank lines to display} Brk
+		Pre {	} Text {Set, blank lines - if sent - are echoed.}
+	}
+}
+Page Prefs:Http "Http Preferences" {
+    Header "Http Preferences" BNF "Menu: Options->Preferences->Http" Para
+	Text {This tab configures the Http proxy server} Brk
+	Indent {
+		Bold {Use HTTP Proxy Server for web fetches} Brk
+		Indent {
+			Text {If set, web requests will pass through the proxy.} Brk
+			Indent {
+				Bold {Proxy host} Pre {	} Text {Proxy name.} Brk
+				Bold {Proxy port} Pre {	} Text {Proxy port number.}
+			}
+			Text {This information (if appropriate) is supplied by your ISP.}
+		}
+	}
+}
+Page Prefs:Misc "Misc Preferences" {
+    Header "Misc Preferences" BNF "Menu: Options->Preferences->Misc" Para
+	Text {Various odd setting live here.}
+	Indent {
+		Bold {Don't display splash screen at startup} Brk
+		Bold {Ask for confirmation when performing risky actions} Brk
+		Pre {	} Text {Set, it helps avoid little disasters.} Brk
+		Bold {Copy to clipboard when selecting text} Brk
+		Bold {Paste with middle button} Brk
+		Bold {Save window positions with preferences} Brk
+		Bold {Start up with connect dialog open} Brk
+		Pre {	} Text {Just a little shortcut when starting up.} Brk
+	}
+}
+Page Prefs:Paging "Text Paging Preference" {
+    Header "Text Paging Preference"
+	Text {If a screenful of text comes in since you last entered a command in
+	  a world, that world's display will stop auto-scrolling, and the world
+	  button light will begin blinking.  This lets you read what came in,
+	  and lets you know that there is more text waiting to be read.  To
+	  continue reading, you just use the Page-Down key to get the next
+	  screenful of text, until you finally get to the end.  When you are at
+	  the end, the world will resume auto-scrolling when new text comes in,
+	  until the next time a screenful arrives without user input.  If you
+	  enter a command in a world, it assumes that you've read all the text
+	  that is currently showing, and will allow that text to scroll off the
+	  top of the screen before it stops scrolling again.} Para
+	Header "Turning Text Paging on/off"
+	Indent {
+		Bullet Text {Open the Preferences window with the Option->Preferences
+		  menu item.} Brk 
+		Bullet Text {Click on the "Display" tab.} Brk
+		Bullet Text {Check or uncheck "Stop scrolling when display fills."} Brk
+		Bullet Text {Press the "Ok" button to dismiss the Preferences window.}
+		  Brk
+		Bullet Text {Save preferences with the "Option->Save Preferences" menu
+		  item.} Brk
+	}
+}
+Page QuickButtons:Main "QuickButtons Overview" {
+    Header "QuickButtons Overview"
+	Text {QuickButtons are used to quickly execute pre-programmed
+	  user-created scripts.} Para
+	Header "Creating a simple Quickbutton"
+	Indent {
+		Bullet Text {Open the Quickbutton Editor with } Link {Options->QuickButtons} QuickButtons:Dialog Brk
+		Bullet Text {Click on the New button.} Brk
+		Bullet Text {Enter a name for the new QuickButton.} Brk
+		Bullet Text {In the main box, type the commands to send to the world.} Brk
+		Bullet Text {Click on the Add button.} Brk
+		Bullet Text {Click on the Done button to close the editor.} Brk
+	}
+}
+Page QuickButtons:Dialog {The QuickButtons Dialog} {
+    Header "The QuickButtons Dialog" BNF {Menu: Options->QuickButtons} Brk
+    BNF {Overview: } Link {Quickbuttons} QuickButtons:Main Para
+	Text {To the left is a list of existing QuickButtons.} Brk
+	Indent {
+		Text {Select one that you want to Update/Rename or Delete.}
+	}
+	Text {To the right is a dialog with 3 fields:} Brk
+	Indent {
+		Bold {Name:} Pre {	}
+			Defin {Type a new name to create/rename a button.} Brk
+		Bold {Evaluate...} Pre {	}
+			Defin {This is to be checked (yes) if the script is Tcl.} Brk
+		Bold {Script} Pre {	}
+			Defin {The script to be Processed.} Brk
+	}
+	Text {Below there are five buttons:} Brk
+	Indent {
+		Bold {New} Pre {	}
+			Defin {To start the } Link {New QuickButtons} QuickButtons:New Text { dialog.} Brk
+		Bold {Add} Pre {		}
+			Defin {To add a new QuickButton from within this dialog.} Brk
+		Bold {Update/Rename} Pre { }
+			Defin {To change the script or name (or Tcl status) of an existing QuickButton.} Brk
+		Bold {Delete} Pre {	}
+			Defin {To permanently delete a selected QuickButton.} Brk
+		Bold {Done} Pre {	}
+			Defin {To exit without further changes.} Brk
+	}
+	Text {Compare with } Link {macros.} Macros:Main Text
+}		
+Page QuickButtons:New {The New QuickButtons Dialog} {
+    Header "The New QuickButtons Dialog" BNF {Menu: Options->QuickButtons->New} Brk
+    BNF {Overview: } Link {Quickbuttons} QuickButtons:Main Para
+	Text {There are 3 fields:} Brk
+	Indent {
+		Bold {Name:} Pre {	}
+			Text {Type a new name to create a button.} Brk
+		Bold {Evaluate...} Pre {	}
+			Text {This is to be checked (yes) if the script is Tcl.} Brk
+		Bold {Script} Pre {	}
+			Text {The script to be Processed.} Brk
+	}
+	Text {Below there are two buttons:} Brk
+	Indent {
+		Bold {cancel} Pre {	}
+			Text {To exit the dialog without change.} Brk
+		Bold {Add} Pre {		}
+			Text {To add a new QuickButton.} Brk
+	}
+}		
+Page Styles:Main "Text Styles" {
+    Header "Text/Font Styles" BNF "See also " Link {Highlights & Triggers} Hilite:Main Para
+	Text {A style is a collection of color/font attributes used to hilite text.
+	    If you want some text to show up red on a blue background, in an italic
+		helvetica font, you need to have a style defined with those attributes.
+		This may seem like an unneccesary annoyance, but it turns out to be
+		useful when you want more than one hilite to use the same style.} Para
+	Text {There are 3 main options to a style:}
+	Indent {
+		Bold {Specify Font:} Pre {		} Text {If chosen, then the following apply:}
+		Indent {
+			Bold {Font:} Pre {		} Text {the font (e.g. Courier)} Brk
+			Bold {Size:} Pre {		} Text {ths point size of the text.} Brk
+			Bold {Bold:} Pre {		} Text {whether the text is bold.} Brk
+			Bold {Italic:} Pre {		} Text {whether the text is italic.} Brk
+		}
+		Bold {Foreground color:} Pre {	} Text {If selected, then set the text color.} Brk
+		Bold {Background color:} Pre {	} Text {If selected, then set the background color.} Brk
+	}
+	Bold {Note} Text { that you could select to just modify the foreground color if you wish, or just the background, or both colors and nothing else, or any other of the 7 combinations.} Para
+	Header "Creating a simple Font Style"
+	Indent {
+		Bullet Text {Open the Font Style Editor with } Link {Options->Font Styles} Styles:Dialog Brk
+		Bullet Text {Click on the New button.} Brk
+		Bullet Text {Enter a name for the new Style.} Brk
+		Bullet Text {Check the 'Specify Font' check box.} Brk
+		Bullet Text {Select a font using the combo box.} Brk
+		Bullet Text {Select a Size.} Brk
+		Bullet Text {Click on the Add button.} Brk
+		Bullet Text {Click on the Done button to close the editor.} Brk
+	}
+}
+Page Styles:Color {Color picker} {
+    Header "Color picker"
+	Text {This dialog allows a color to be picked.} Para
+}
+Page Styles:Dialog {The Edit Font Styles Dialog} {
+    Header "The Edit Font Styles Dialog" BNF {Menu: Options->Font Styles} Brk
+    BNF {Overview: } Link {Font Styles} Styles:Main Para
+	Text {To the left is a list of existing Styles.} Brk
+	Indent {
+		Text {Select one that you want to Update/Rename or Delete.}
+	}
+	Text {To the right is a dialog with 8 fields:} Brk
+	Indent {
+		Bold {Name:} Pre {		}
+			Text {Type a new name to create/rename a style.} Brk
+		Bold {Specify Font:} Pre {		}
+			Text {If unchecked, then ignore the next 4 fields.} Brk
+		Indent {
+			Bold {Font:} Pre {		}
+				Text {Select chosen font.} Brk
+			Bold {Size:} Pre {		}
+				Text {Select point size of font.} Brk
+			Bold {Bold:} Pre {		}
+				Text {Checked if bold.} Brk
+			Bold {Italic:} Pre {		}
+				Text {Checked if italicised.}
+		}
+		Bold {Color Text:} Pre {		}
+			Link {Choose color} Styles:Color Text { of text when checked.} Brk
+		Bold {Color Background:} Pre {	}
+			Link {Choose color} Styles:Color Text { of background when checked.} Brk
+	}
+	Text {Below there are five buttons:} Brk
+	Indent {
+		Bold {New} Pre {	}
+			Text {To start the } Link {New Font Styles} Styles:New Text { dialog.} Brk
+		Bold {Add} Pre {		}
+			Text {To add a new style from within this dialog.} Brk
+		Bold {Update/Rename} Pre { }
+			Text {To change the details or name of an existing style.} Brk
+		Bold {Delete} Pre {	}
+			Text {To permanently delete a selected style.} Brk
+		Bold {Done} Pre {	}
+			Text {To exit without further changes.} Brk
+	}
+}		
+Page Styles:New {The New Font Styles Dialog} {
+    Header "The New Font Styles Dialog" BNF {Menu: Options->Font Styles->New} Brk
+    BNF {Overview: } Link {Font Styles} Styles:Main Para
+	Text {There are 8 fields:} Brk
+	Indent {
+		Bold {Name:} Pre {		}
+			Text {Type a new name to create a style.} Brk
+		Bold {Specify Font:} Pre {		}
+			Text {If unchecked, then ignore the next 4 fields.} Brk
+		Indent {
+			Bold {Font:} Pre {		}
+				Text {Select chosen font.} Brk
+			Bold {Size:} Pre {		}
+				Text {Select point size of font.} Brk
+			Bold {Bold:} Pre {		}
+				Text {Checked if bold.} Brk
+			Bold {Italic:} Pre {		}
+				Text {Checked if italicised.}
+		}
+		Bold {Color Text:} Pre {		}
+			Link {Choose color} Styles:Color Text { of text when checked.} Brk
+		Bold {Color Background:} Pre {	}
+			Link {Choose color} Styles:Color Text { of background when checked.} Brk
+	}
+	Text {Below there are two buttons:} Brk
+	Indent {
+		Bold {cancel} Pre {	}
+			Text {To exit the dialog without change.} Brk
+		Bold {Add/Set} Pre {	}
+			Text {To add a new style.} Brk
+	}
+}		
+Page World:Main "Worlds Overview" {
+    Header "Worlds Overview" Para
+	Text {Worlds embody the concept of who and where you are.} Brk
+	Text {They contain knowledge of how and where to connect you to the MU* server that you want to use, and may also include your character login information as well.} Brk
+
+	Header "Creating a New World (for a guest account)"
+	Indent {
+		Bullet Text {Open the New World dialog with } Link {File->New World} World:New Brk
+		Bullet Text {Enter a name for the new World.} Brk
+		Bullet Text {In the host name box, enter the name of the server.} Brk
+		Bullet Text {In the port number, enter the port number for the MUCK.} Brk
+		Bullet Text {Click on the Add button.} Brk
+		Bullet Text {Click on the Done button to close the editor.} Brk
+	}
+	Header "Creating a New World (for a named character)"
+	Indent {
+		Bullet Text {Open the New World dialog with } Link {File->New World} World:New Brk
+		Bullet Text {Enter a name for the new World.} Brk
+		Bullet Text {In the host name box, enter the name of the server.} Brk
+		Bullet Text {In the port number box, enter the port number for the MUCK.} Brk
+		Bullet Text {In the character box, enter the name of your character.} Brk
+		Bullet Text {In the password box, enter password for your character.} Brk
+		Bullet Text {Click on the Add button.} Brk
+		Bullet Text {Click on the Done button to close the editor.} Brk
+		Text {Trebuchet will then automatically log you in when you connect.} Brk
+	}
+}
+Page World:New "The New World Dialog" {
+    Header "The New World Dialog" BNF "Menu: File->New World" Brk
+    Text {Overview: } Link {Worlds} World:Main Para
+	Text {The New World dialog has the following fields:} Brk
+	Indent {
+		Text {The first three fields are mandatory.} Brk
+		Text {You won't get a connection without them.} Brk
+		Bold {World Name:}
+			Pre {	} Text {the name you'd like to give to this MU*/character combination.}	Brk
+		Bold {Host Name:}
+			Pre {	} Text {is the name of the server hosting the MU*.} Brk
+		Bold {Port Number:}
+			Pre {	} Text {is the port number that the MU* program is attached to.} Brk
+		Brk
+		Text {If you already have a character, you could fill in the details here.} Brk
+		Text {Otherwise, you could use the } Link {File->Edit Worlds} World:Edit Text { dialog to enter the details later.} Brk
+		Bold {Character:} Pre {	} Text {The login name of your character.} Brk
+		Bold {Password:}  Pre {	} Text {The password of your character.} Brk
+		Text {If you don't fill in the character details, you'll often be given guest access.} Brk
+		Text {Try it and see. It can't hurt.} Brk
+	}
+	Text {Buttons are:} Brk
+	Indent {
+		Bold {cancel} Pre {	} Text {button quits the dialog without saving anything.} Brk
+		Bold {Add/Set}    Pre {	} Text {button creates a new MU*/character and closes the dialog.} Brk
+	}
+	Text {Have fun :P}
+}
+Page World:Edit "The Edit World Dialog" {
+    Header "The Edit World Dialog" BNF "Menu: File->Edit Worlds" Brk
+    Text {Overview: } Link {Worlds} World:Main Para
+	Text {To the left is a selection box in which existing Worlds are listed.} Brk
+	Indent { Text {Choose one of these using the keyboard or mouse.} }
+
+	Text {To the right are the same fields as in the New Worlds dialog.} Brk
+	Indent {
+		Bold {World Name:} Pre {	} Text {To edit the world, leave this as is.} Brk
+		Pre {		} Text {To create a new world or change its name, edit the name.}	Brk
+		Bold {Host Name:}  Pre {	} Text {is the server name.} Brk
+		Bold {Port Number:} Pre {	} Text {is the port number of the MU*.} Brk
+		Brk
+		Text {If you want to automatically log in as a character, fill in the details here.} Brk
+		Bold {Character:} Pre {	} Text {The login name of your character.} Brk
+		Bold {Password:}  Pre {	} Text {The password of your character.} Brk
+	}
+	Text {At the bottom are five buttons:} Brk
+	Indent {
+		Bold {New} Pre {		} Text {opens the } Link {New World} World:New Text { dialog.} Brk
+		Bold {Add} Pre {			} Text {creates a new world using this dialog.} Brk
+		Bold {Update/Rename} Pre {	} Text {edits an existing world without creating a new one.} Brk
+		Bold {Delete} Pre {		} Text {deletes the selected world. Careful!} Brk
+		Bold {Done} Pre {		} Text {exits the dialog without changing anything more.}
+	}
+}
+Page World:Connect "The World Connect Dialog" {
+    Header "The World Connect Dialog" BNF "Menu: File->Connect World" Brk
+    Text {Overview: } Link {Worlds} World:Main Para
+	Text {The Connect dialog gives you a list of existing worlds.} Brk
+	Indent {
+		Text {Choose one of these and a button} Brk
+		Pre {		} Bold {-- or --} Brk
+		Text {Double click a world name to connect immediately.} Brk
+	}
+	Text {The buttons are:} Brk
+	Indent {
+		Bold {Connect} Pre {	} Defin {to connect to the world.} Brk
+		Bold {Edit} Pre {		} Defin {to open the } Link {New World} World:New Defin { dialog for editing.  NB. You cannot add new worlds using this.} Brk
+		Bold {cancel} Pre {	} Defin {to close the dialog.} Brk
+	}
+}
