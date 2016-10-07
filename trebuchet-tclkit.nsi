@@ -4,11 +4,11 @@
 
 !define PROD_NAME "Trebuchet Tk"
 !define VER_MAJOR 1
-!define VER_MINOR 75
+!define VER_MINOR 81
 !define VER_REVISION 0
 !define VER_BUILD 1
-!define VER_FILE "1075"
-!define VER_DISPLAY "1.075"
+!define VER_FILE "1081"
+!define VER_DISPLAY "1.081"
 
 ;-------------------------------
 ;Use modern GUI

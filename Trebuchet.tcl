@@ -231,13 +231,15 @@ proc init {argc argv} {
         # Make sure we find the REAL Trebuchet.tcl, and not a softlink.
         while {![catch {file readlink $myexec}]} {
             set myexec [file join \
-            [file dirname $myexec] \
-            [file readlink $myexec]]
+                [file dirname $myexec] \
+                [file readlink $myexec]]
         }
 
         # The root trebuchet dir is the dir that Trebuchet.tcl is in.
         set treb_root_dir [file dirname $myexec]
-        if {$tcl_platform(winsys) == "aqua"} {
+        if {$myexec == "Trebuchet.tcl"} {
+            set treb_root_dir ""
+        } elseif {$tcl_platform(winsys) == "aqua"} {
             set treb_root_dir [file join $treb_root_dir .. .. .. trebuchet]
         }
     } else {
@@ -1282,7 +1284,7 @@ proc directconnect {sok world notls} {
             /statbar 30 "Negotiating SSL for $world..."
             update idletasks
             global treb_cacerts_dir
-	    set cafile [file join $treb_cacerts_dir "ca-bundle.crt"]
+            set cafile [file join $treb_cacerts_dir "ca-bundle.crt"]
             tls::import $sok -require 1 -cafile $cafile -cadir $treb_cacerts_dir -ssl2 0 -ssl3 0 -tls1 1 -command tls_command_cb
             wait_for_ssl_negotiation $sok $world
             return
@@ -1466,9 +1468,9 @@ proc readline {world {forced_data ""}} {
             }
         }
         set encoding [/world:get encoding $world]
-	if {$encoding == "identity"} {
-	    set encoding "utf-8"
-	}
+        if {$encoding == "identity"} {
+            set encoding "utf-8"
+        }
         set line [encoding convertfrom $encoding $line]
         if {[string first "\a" "$line"] != -1} {
             /bell

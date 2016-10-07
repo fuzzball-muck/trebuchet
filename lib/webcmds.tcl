@@ -1,5 +1,4 @@
 package require http
-package require platform
 
 # http://trebuchet.cvs.sourceforge.net/viewvc/trebuchet/trebuchet/changes.txt
 
@@ -41,7 +40,7 @@ package require platform
                 return
             }
         }
-	/web_view "https://github.com/revarbat/trebuchet/releases"
+        /web_view "https://github.com/revarbat/trebuchet/releases"
     } else {
         if {!$nowarns} {
             tk_messageBox -type ok -icon info -title "Update" -message "No upgrades are currently available."
