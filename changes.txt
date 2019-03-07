@@ -1,0 +1,1558 @@
+TrebTk 1.081
+Fixed URLs for 'check for update'.
+
+
+
+TrebTk 1.080
+Removed web updater code as being obsolete and problematic.
+Updated TLS support.
+
+
+
+TrebTk 1.079
+Added View menu options to turn off or change syntax highlighting mode.
+
+
+
+TrebTk 1.078
+Fixed apple menu bug under OS X.
+
+
+
+TrebTk 1.077
+Repackaged OS X app with TCL 8.6 for IPv6 support.
+
+
+
+TrebTk 1.076
+Added CA root certificates for general commercial Cert Authorities.
+
+
+
+TrebTk 1.075
+Fixed: Now a Universal Binary under OS X.
+Fixed: Now works on OS X Leopard.
+Fixed: minor bug on sending text to deleted world.
+Changed: Now shows more reasonable selection of Encodings in dropdowns.
+
+
+
+TrebTk 1.074
+Fixed: A typo in worlds.tcl, leading to a bad "is08859-1" default locale
+       for new worlds, instead of "iso8859-1".
+
+
+
+TrebTk 1.073
+Fixed: Reverted a change in the CVS version of v1.072, in notebook.tcl, which
+       made Trebuchet incompatible with Tcl/Tk v8.3.
+Added: support for per-world character encoding settings.
+Added: a setting in the MCP preferences tab for disabling/enabling MSP sounds
+       support (enabled by default).
+Added: some icons.
+
+
+
+TrebTk 1.072
+Fixed: various quick buttons layout problems.
+Fixed: qbuttons font getting too small.
+Fixed: missing file types filters (*.txt, *.muf, *.mpi, *.*) in the "Send File"
+       file selector.
+Fixed: wrong URL highlighting of ASCII art. Better and faster URL regexps.
+Fixed: slowdown on first start on systems without aspell installed.
+Fixed: failure to match braces in the input windows.
+Fixed: double pasting with middle mouse button under Windows.
+Fixed: a bug triggered when pressing the "Done" button of the worlds edit
+       dialog while there is no configured world yet.
+Fixed: login problems and multiple lines sending with Talkers.
+Fixed: crash bug in the word completion routine which occured in some
+       instances, when completing ANSIfied names on some Talkers. This is a
+       work around and only prevents the crash from occurring, but Trebuchet
+       will still fail to complete the word.
+Added: "Empty the web cache on exit" option to the HTTP tab of the preferences
+       menu.
+Added: enabling of the "Only to matched words" option for the "gag" style.
+Added: "Find..." and "Send to the MUCK" items to the context menu for selected
+       text in display and input windows.
+Added: SOCKS5 proxyfied connections support (note that this patch removes the
+       old, obscure telnet proxy code which was not supported by the GUI
+       anyway, and thus most probably unused).
+Added: new MCP module which enables Trebuchet with loading of images stored on
+       web sites into its output display.
+Added: MCP-encapsulated MSP (MUD Sound Protocol) support (zMud alike), enabling
+       Trebuchet with sound/music playing ability.
+Added: multiple ping commands.To use this feature, simply set a list of
+       commands in the "Ping command" field of the world, separating each one
+       from the next with a "|" symbol (example: who|ex|l): each ping command
+       will be sent in their turn at each tick of the anti-disconnection timer.
+Changed: a few cosmetic changes, among which a default black background for the
+         display, suitable for ANSI-enabled MU*s.
+
+
+
+TrebTk 1.071
+Fixed: bug with spinner widgets in preferences dialog.
+
+
+
+TrebTk 1.070
+Fixed: Some servers send telnet IAC DO LINEMODE, but can't handle the reply.
+Fixed: Various bugs in TELNET protocol and STARTTLS support.
+Fixed: Input buffer can now be resized as small as the scrollbar will allow.
+Fixed: Compass rose no longer sends dicrection commands to the wrong world.
+Fixed: qbutton_minwidth /pref now only affects quickbutton widths.
+Fixed: Improved spellchecker error reporting.  Made it not kill standard_timer.
+Fixed: Removed extra newlines from opening and saving text files from textdlog.
+Fixed: /error dialogs should now pop up from the foremost dialog.
+Fixed: Attempted to fix quickbutton layout code.
+Fixed: First-run window size now is reasonable.
+Fixed: MCP dialog creation error with setting max dlog width and height.
+Fixed: Improved window size estimation for first-time run.
+Fixed: Turning off HTML logging now should work correctly.
+Fixed: Various dialogs now start with focus in Name field.
+Fixed: Added validation for various dialogs, before allowing Add/Update.
+Added: Support for TELNET terminal-type reporting.
+Added: /dokey delete_char, to delete the character before the cursor.
+Added: Text dialogs now have horizontal scrollbar, for when word wrap is off.
+Changed: Cut will now refuse to put a null string into the copy buffer.
+Changed: aspell defaults no longer have --lang=en args, so debian works.
+
+
+
+TrebTk 1.069
+Fixed: re-logging into a disconnected world logs in the character correctly.
+Added: Context menu item to Convert URLs to TinyURL.com links.
+
+
+
+TrebTk 1.068
+Fixed: typos in qbuttons_minwidth prefs item title.
+Fixed: keybinds dialog modifier key buttons now use icons on OS X.  This is a
+  workaround for the broken font encoding translation code on OS X.
+
+
+
+TrebTk 1.067
+Fixed: Bitmap screen font shimmering under OS X.
+Fixed: Cut and Copy no longer try to copy nonexistent end of input buffer.
+Fixed: Deletion of QuickButtons now removes actual button again.
+Fixed: Activity in front world will flash light and title, if window is in BG.
+Fixed: Input buffer height resizing is now more accurate and live.
+Fixed: { } [ ] ( ) ` ' and " no longer insert into output display area.
+Fixed: TELNET protocol commands can now span multiple reads.
+Fixed: SSL certificate handling on OS X 10.4.
+Fixed: Worked around combobox popup list problem.
+Added: Dock icon in Aqua can bounce on activity, with a patched interpreter.
+Added: Input buffer height is now preserved between sessions, once prefs saved.
+Added: Optional compass rose for simple mouse-based world navigation.
+Added: "Delete this Quickbutton" context menu item for quickbuttons.
+Added: -temp option to /world:add, to allow for unsaved temporary worlds.
+Added: -connect HOST:PORT commandline option to create and open temp world.
+Added: ^K to push current inbuf contents into command history, without sending.
+Added: /setwidth to set column width of main window.
+Added: Automatic TELNET STARTTLS encryption support.
+Added: qbuttons_minwidth /pref, to allow more consistent button widths.
+Added: Support for TELNET windowsize reporting.
+Changed: Refactored and simplified main window widget layout.
+Changed: Changed really bizarre OS X default keybinds to match other platforms.
+Changed: New dialogs should now pop up onscreen in about the right place,
+  instead of showing up offscreen first.
+Changed: If the Tk Tiles extension is available, use that for notebook widgets.
+Changed: If the spinbox widget is available, use that for spinner widgets.
+Changed: Tweaked the GUI to work better with a patched Tk interp.
+Changed: Refactored TELNET protocol code to be more cleanly extensible.
+
+
+
+TrebTk 1.066
+Fixed: Menubar toggle items weren't showing state indicator.
+Fixed: Using a : in a menu accellerator was giving errors on Unix.
+Fixed: Cut/Copy/Paste Edit menu items should work with focus-follows-mouse.
+Fixed: hanging bug when deleting chars to make \ the last char on the line.
+Fixed: If you have too many worldbuttons, they now show in multiple rows.
+Fixed: Bug with setting fakebutton images on non-OS X platforms.
+Added: Spelling checker, if you have aspell or ispell installed.
+Added: Spell checker prefs are now in Spelling prefs tab for all platforms.
+Added: Initial screen has commonly asked about default keyboard hints.
+Changed: Moved some functions out of Trebuchet.tcl to more appropriate files.
+Changed: Refactored worldbutton code to use buttonbar handlers.
+Changed: Genericized buttonbar context menu item support.
+Changed: Font sizes in OS X should try to match Windows font sizes.
+
+
+
+TrebTk 1.065
+Fixed: Crasher bug in brace matching code when window has been closed.
+Fixed: Cmd keys no longer fail when focus was in display instead of input area.
+Fixed: Make <Key-Return> binding, in case user deleted it earlier.
+Fixed: Null strings no longer accepted as names for /macro, /qbutton, et al.
+Changed: /send_dlog -prepend argument renamed to -prefix.
+Changed: /send_dlog -append argument renamed to -suffix.
+Changed: /quote now needs a -getpid flag to return the process id.
+Changed: Re-enabled Cut from display window, to allow eliding text.
+Added: /quote -after arg to specify command to run after quote is done.
+Added: /send_dlog -after arg to specify default cmd to run after quote is done.
+Added: 'After' command field in Send File dialog.
+
+
+
+TrebTk 1.064
+Fixed: Error with nonexistent tag "none" in /style:* commands.
+
+
+
+TrebTk 1.063
+Fixed: iBeam cursor in richview help window.
+Fixed: Removed expired CA certs and added the new BelfryCA cert.
+Fixed: Made reading prefs file not die on reading unknown /pref.
+Fixed: Refactored OS matching code for limiting which /prefs are shown.
+Changed: Removed obsolete send_keepalive global /pref.
+
+
+
+TrebTk 1.062
+Fixed: unix_beep_command pref is now a string, like it's supposed to be.
+Fixed: Improved email regexp patterns.
+Fixed: Runtime error with namespaces under TCL 8.3 and earlier.
+Added: Per-world enabling of TELNET Keepalive messages.
+Added: Per-world option of a keepalive command.
+Changed: Launching netscape or mozilla in unix is slightly smarter now.
+
+
+
+
+TrebTk 1.061
+Fixed: On OS X, treb can now run under both Aqua and X11 builds of TCL/Tk.
+Changed: Removed nonworking TCP keepalive code.  Will now send TELNET NOP
+  keepalives to all world types, when keepalives are enables.
+Changed: Refactored /worlds class to use arrays for internal storage.
+Changed: Refactored brace matching code to work for all text widgets.
+Added: When typing braces in text widgets, matching braces are shown.
+Added: Ctrl-M key will show matching braces in input buffer and scratchpad.
+Added: Esc-M key will expand MPI code to multiple lines in text widgets.
+Added: Esc-K key will collapse multiline MPI code to one line in text widgets.
+Added: On unix systems, you can now specify beep commands to play a sound.
+Added: Optional auto-logging on connect for worlds.
+
+
+
+TrebTk 1.060
+Fixed: Removed default new-hilite category of "Templates".
+
+
+
+TrebTk 1.059
+Fixed: Removed uneccesary escaping of commas in URLs on windows.
+
+
+
+TrebTk 1.058
+Added: Select All menu item in edit menu.
+Added: Command-A keyboard binding for OS X Select All menu item.
+Added: Ctrl-Shift-A keyboard binding for Windows & Unix Select All menu item.
+Added: /world:raise command to make the given world display be visible.
+Changed: serverside MCP-GUI error messages are now posted in the statusbar.
+Fixed: /fbhelp now lets you also access mpi, help, and news types.
+Fixed: Worked around OS X redraw error with Aqua controls in notebook widget.
+Fixed: Improved error reporting with /tool commands.
+Fixed: URL handling on Windows platforms should better deal with ampersands.
+Fixed: Improved display of which user's turn it is in chess applet.
+
+
+
+TrebTk 1.057
+Fixed: keyboard bindings dialog now shows the 'eval as Tcl' checkbox.
+Fixed: Chess applet now should work on all windows tclkit installs.
+
+
+
+TrebTk 1.056
+Fixed: Email regexp should be more correct now.
+Fixed: Copy-on-select and button-2-paste on Unix.
+Changed: Comboboxes now show nicer on OS X with patched interp.
+Changed: Removed lots of unneeded -highlightthickness 1 overrides.
+Added: Uses Griffin, if available, to improve GUI look on Windows and Unix.
+
+
+
+TrebTk 1.055
+Fixed: If an error occurs before the main window is up, display error anyways.
+Fixed: Removed extraneous comma escaping in URLs.
+Fixed: Right-click on OS X no longer pastes.
+Fixed: Right-click and ctrl-left-click on OS X brings up context menu again.
+Changed: Moved display code from Trebuchet.tcl to lib/displays.tcl.
+Changed: Moved worldbutton code from Trebuchet.tcl to lib/worldbtn.tcl.
+Changed: Refactored worldbutton code to share button code with quickbuttons.
+Changed: On patched OS X Tk, uses compound buttons for world and quickbuttons.
+Changed: On patched OS X Tk, dialog backgrounds are pinstriped.
+Changed: Default fixed width font size is taken from sans serif pt size now.
+Changed: Main window menus should appear faster now.
+Changed: Notebook widget can now refer to panes by widget name.
+Changed: Moved a couple preference items around to clean up prefs dialog.
+Added: 'Open as URL...' context menu item for selected text.
+
+
+
+TrebTk 1.054
+Fixed: Funky url spacing issues on Windows.
+Fixed: Start Logging menu item now has elipsis.
+Fixed: On OS X, interps with corrected DPI will adjust font sizes on first run.
+Fixed: Selection tag now raised above ansi tags, so it can be seen.
+Changed: Style font size selection combo has additional 6 and 7 point sizes.
+Changed: non-editable combobox now has selected item appear over menubutton.
+Changed: ANSI flash codes now flash, unless diabled in the Preferences.
+Added: support for ANSI italics codes.
+Added: support for ANSI overstrike codes.
+
+
+
+TrebTk 1.053
+Fixed: Older interps choked on -encoding fconfigure option.
+
+
+
+TrebTk 1.052
+Fixed: Error in reading World combobox widget value in Send File on OS X.
+Fixed: New World dialog now has correct default type.
+Fixed: Import now works on OS X.
+Changed: /error and /nonmodalerror now both use tk_messageBox on OS X.
+Changed: Modal /textdlogs now have titlebars on OS X again.
+
+
+
+TrebTk 1.051
+Fixed: Bug in reporting errors in the loaded Prefs file.
+Fixed: Bug with loading of broken style menus from prefs file.
+Fixed: Bug with listing of style menu scripts.
+
+
+
+TrebTk 1.050
+Fixed: NetUpdate progress win will no longer keep forcing itself to be on top.
+Fixed: Cleared text color for url style would get reset on Trebuchet reload.
+Fixed: Telnet negotiation is now corrected to not be UTF-8 encoded.
+Fixed: Telnet Keepalives will only be sent to servers that negotiate Telnet
+  options.  This helps reduce the number of fake de-idler complaints.
+Added: 'lpp' world type for servers that use Telnet GOAHEAD or END-OF-RECORD.
+
+
+
+TrebTk 1.049
+Fixed: URLs with &s in them are no longer over-escaped on Windows.
+Fixed: Split LF CR pairs no longer induce blank lines in output.
+Fixed: Partial lines will display after a timeout, to allow for LPMUD prompts.
+Fixed: Network errors after connected, now give less misleading messages.
+Changed: All indenting is now via spaces instead of mixed tabs and spaces.
+Added: /world -type can specify 'lp' or 'tiny' style logins and prompts.
+
+
+
+TrebTk 1.048
+Fixed: Email address matching is no longer so overzealous.
+
+
+
+TrebTk 1.047
+Fixed: Bug #765638: $filearg was undefined when clicking on URL.
+
+
+
+TrebTk 1.046
+Fixed: Bug #478639.  We now save prefs after NetUpdate.
+Fixed: Bug #746636.  Middle mouse button shouldn't paste in display now.
+Fixed: Bug #603266.  Close world verification dialog is now correct.
+Fixed: Bug #579362.  Loading and saving of prefs file is more robust now.
+Fixed: Bug #549535 & #694791.  Treb now ignores errors on saving webcache.
+Fixed: Buf #591910 part 1.  [on/off] commands in prefs cmd error strings.
+Fixed: Buf #591910 part 3.  About box now shows copyright to 2003.
+Changed: /saveprefs now lets you specify what kinds of data to save.
+Added: 'Import settings...' Option menu item, to import prefs/config data.
+Added: 'Export settings...' Option menu item, to export prefs/worlds data.
+
+
+
+TrebTk 1.045
+Fixed: Scrollbars on Unix should now have relief again.
+
+
+
+TrebTk 1.044
+Fixed: If Treb can't find its config file on Windows platform, user is now
+  given choice to create a new config, or to search for the old config file.
+Fixed: Bug on MacOS X with listing glyphic unicode font names.
+Fixed: Bizarre entry widget placement in MacOS X Edit->Find dialog.
+Fixed: Selector dialogs should now not appear onscreen until ready.
+Fixed: /editdlog and prefs dialogs should no longer have wierd menus on OS X.
+Changed: Non-editable comboboxes now appear as native dropdowns on MacOS X.
+Changed: Rewrote combobox code to use namespaces and act like normal Tk widget.
+Added: Various keyboard accellerators for MacOS X menu items.
+Added: Log as HTML feature, which preserves highlights and fonts.
+Added: /log -html option, to save log in HTML format.
+Added: /log -scrollback option, to save scrollback out to disk.
+Added: /log -dated option, to do %X date subs on filename, a la [clock format].
+Added: /log_dlog command to bring up a logging initiation GUI.
+Added: /benchmark command to benchmark execution time of commands.
+
+
+
+TrebTk 1.043
+Fixed: Bumped up MCP-GUI package version to 1.3, to reflect earlier addition
+  of support for enabling/disabling controls.
+
+
+
+TrebTk 1.042
+Fixed: in colorwheel.tcl, -col must be -column for some tk interps.
+
+
+
+TrebTk 1.041
+Fixed: bogus Error 0 errors from SSL.
+Fixed: $TextPopupInfo(clickedat) undefined errors on world connect on XP.
+Fixed: some bogus URL matching.
+
+
+
+TrebTk 1.040
+Added: More URL patterns to better match URLs.
+Fixed: cursor bug on OS X with Tk 8.4.1.
+
+
+
+TrebTk 1.039
+Fixed: SSL secure indicator now correct for mixed secure/insecure connections.
+Fixed: MCP-GUI spinners should now no longer give errors.
+Added: /style menus with <<Click>> as the label, make for clickable links.
+Added: Clicking on URLs now launches a web browser.
+
+
+
+TrebTk 1.038
+Fixed: bug with /menu:add getting an error when replacing a menu item.
+Fixed: Command-Key menu accellerators on MacOS X.
+Changed: color scheme on MacOS X to be a bit more maclike.
+
+
+
+TrebTk 1.037
+Fixed: Up/Down arrow keys within wrapped lines.
+Fixed: Rewrote /menu menu updater to hopefully work better with windows.
+Changed: Reverted QuickButtons to old look on non-mac platforms.
+
+
+
+TrebTk 1.036
+Fixed: SSL Certificate host verification is now case insensitive.
+Fixed: SSL Certificate host verification allows requested hostname as well as
+  the reverse DNS hostname.
+Fixed: More font issues with -family defined fonts.
+
+
+
+TrebTk 1.035
+Fixed: TLS/SSL support on MacOS X.
+Fixed: Autoscroll race condition with pressing Enter/Return.  (I think.)
+Fixed: Syntax error in MCP-GUI ctrl-cmd processing.
+Fixed: startup error with fonts on some systems.
+Added: '/grab TEXT' command to replace input buffer data with TEXT.
+Added: $args variable for /macro scripts.  Contains all macro arguments.
+Added: $0 variable for /macro scripts.  Contains macro name.
+Added: $1 to $9 variables for /macro scripts.  Contain TCL grouped args.
+Added: Support for launching of RTSP urls.
+Added: --tkshell cmdline option to provide a shell for systems that can't.
+Added: /qbutton:togglebar command to toggle visibility of quickbuttons.
+Changed: Clear Scrollback moved to view menu from edit menu.
+Changed: QuickButtons now look nicer, as rollover buttons.
+Changed: Status bar on MacOS X no longer has sunken wells around text.
+Changed: Menus on MacOS X are now more correct.
+
+
+
+TrebTk 1.034
+Fixed: WinXP tabbed notebook widget jitter problem.  For real this time.
+
+
+
+TrebTk 1.033
+Fixed: Tabbing focus from a combobox should no longer give an error.
+Fixed: Clarified text in certificate user acceptance dialog.
+Fixed: Handling of /styles with pixel size specified instead of point size.
+Fixed: MacOS X handling of second button clicks for context menus.
+Fixed: MacOS X handling of scrollwheel events.
+Fixed: WinXP determination of default fonts.
+Fixed: WinXP tabbed notebook widget jitter problem.  Maybe.  I hope.
+
+
+
+TrebTk 1.032
+Fixed: MacOS X web browser launching no longer uses (broken) background open.
+Fixed: Updated trebuchet.spec RPM specification.
+
+
+
+TrebTk 1.031
+Fixed: A windows SSL warning of No Error should be ignored now.
+
+
+
+TrebTk 1.030
+Fixed: SSL/TLS now verifies server certs, to prevent man-in-the-middle attacks.
+  The user can allow a bad cert anyways, at their discression.
+Fixed: Enabling SSL for a live world no longer incorrectly shows lock icon.
+Fixed: Clicking the Secure checkbox now enables update buttons in world dlog.
+Fixed: Tabbed Notebooks now support multiple rows of tabs.
+Fixed: Opening URLs should now work under MacOS X.
+Fixed: Display scrollback limits now work again.
+Fixed: Ansi attributes now are corrected when 'normal' style changes.
+Added: SSL/TLS connection/cert info can be shown by clicking the SSL lock icon.
+Added: Improved MCP-GUI combobox cntrl-cmd support.
+Added: MCP-GUI Insert ctrl-cmd now can add tabs/panes to notebooks.
+Added: MCP-GUI Show ctrl-cmd now can raise tabs/panes for notebooks.
+Added: Context menus for URLs now have 'Copy URL to clipboard' item.
+Added: MCP-GUI listboxes can now specify first and last items to delete.
+Added: $clicks_per_second global variable, for higher precision timing.
+Added: /clock_clicks call for standardizing fetching of clicks.
+Added: Support for ANSI attribute shutoff codes.
+Changed: Moved SSL/TLS support code from Trebuchet.tcl into lib/secsupp.tcl.
+Changed: Upped MCP-GUI version to 1.2.
+Changed: Rewrote NoteBook to use namespaces and work like a normal widget.
+Changed: Shortened label for external editor command preference.
+Changed: MCP ping support now has approximate millisecond precision.
+Changed: rewrote mainwin menu system to use /menu verb.
+Changed: /macros now split up arguments based on TCL rules.
+Changed: replaced builtin Tk color selector dialog on unix platforms.
+
+
+
+TrebTk 1.029
+Fixed: MCP-GUI colskip now skips columns before control being placed.
+Fixed: MCP-GUI no longer gives errors when key accelerators are used.
+Fixed: Default fonts should be more correct.  I think.
+Changed: Upped MCP-GUI version to 1.1.
+Added: External editor support for MCP simpleedit MUF program editing on unix.
+Added: MCP-GUI tree control type.
+
+
+
+TrebTk 1.028
+Fixed: MCP-GUI reporting of valchanged events for listboxes.
+Fixed: Treb should now be more consistent about the fonts and sizes it uses.
+
+
+
+TrebTk 1.027
+Fixed: Added workaround for bug in Mac checkbutton handling scripts.
+Fixed: Bug with giving multiedit controls focus in MCP-GUI dialogs.
+
+
+
+TrebTk 1.026
+Changed: 'Live Update' to 'Network Update' to avoid future legal hassles,
+  should a certain company ever notice this program.
+Changed: Updated the helpfile documentation a bunch.
+Changed: Worldbutton status indicator lights are now larger.
+Fixed: bug in helpfile viewer that made custom styles not display.
+Fixed: bug with MCP-GUI buttons when width is unspecified.
+Fixed: When MCP-GUI windows close, focus now is handled by the window manager.
+Added: Underline and Overstrike options to the Styles editor dialog.
+
+
+
+TrebTk 1.025
+Changed: Replaced indicator light gifs with nicer looking ones.
+
+
+
+TrebTk 1.024
+Fixed: Fixed the sin I committed before with font scaling under unix.  This
+  should hopefully be handled correctly by the font size conversion code I
+  added, that will make treb under unix autoscale the fonts 60% larger the
+  first time it's used.  That should make the fonts the right size.  I think.
+Fixed: dialog layout issues with spinner controls under MacOS X.
+Fixed: minor bugs with word and wildcard matching in hilites code.
+Added: Buttons for scaling all styles smaller/larger in 10%/1pt increments
+  in the Fonts pane of the Preferences dialog.
+
+
+
+TrebTk 1.023
+Fixed: corrected some odd MUF keyword highlighting
+Fixed: Made a lot of changes to support MacOS X.  Needs special packaging.
+Changed: live update error messages now suggest checking proxy settings.
+Changed: /repeat now allows -1 count for infinite repeating.
+Added: Support for telnet KeepAlives, to keep firewalls happy.
+Added: 'Firewall' Preferences dlog pane, with KeepAlive options.
+Added: prefs dlog entry for allowing ANSI colors to override styles.
+Added: "Recent Changes" menu item in Help menu, to view changes.txt file.
+
+
+
+TrebTk 1.022
+Fixed: added missing word in world close confirmation dialog.
+Fixed: corrected false checkmate detection in fuzzball chess.
+
+
+
+TrebTk 1.021
+Fixed: Alt-keys work for menus when focus is in world text widget.
+Fixed: ANSI color support more like xterm now.  Supports gloom.
+Changed: textdlogs and MCP simpleedit dialogs no longer cancel via 'Escape'.
+Changed: Various changes to work better on a Macintosh.
+
+
+
+TrebTk 1.020
+Fixed: Cut/copy/paste should now work under Windows.
+
+
+
+TrebTk 1.019
+Fixed: Delete key now works again.
+
+
+
+TrebTk 1.018
+Fixed: Shift-M no longer pops up Macros dialog.
+Added: Scratchpad and text dlogs now support marking position by hitting
+       Shift-Fkeys, and going to marked positions with Fkeys.
+
+
+
+TrebTk 1.017
+Changed: MCP package negotiation no longer is shown on statusbar.  It panics
+         too many people when muf MCP programs get normally recompiled.
+Fixed: \commandlines now work with multi-word worldnames.
+Fixed: a number of minor bugs in the fuzzball-chess plugin.
+Fixed: Main menu accellerators now work again.
+Changed: MCP-GUI Menu items named exactly 'Cut', 'Copy', or 'Paste' now
+         generate those clipboard events, instead of firing off an MCP
+         buttonpress event.
+
+
+
+TrebTk 1.016
+Changed: fuzzball-chess plugin is now much cleaner looking and more usable.
+
+
+
+TrebTk 1.015
+Fixed: fuzzball-chess now deals with reversed board position codes.
+Fixed: fuzzball-chess plugin now deals with uppercase board position codes.
+
+
+
+TrebTk 1.014
+Fixed: bugs with launching the web browser under windows.
+
+
+
+TrebTk 1.013
+Fixed: Minor bug with comments in editor's TCL color syntax highlighting.
+Fixed: ANSI reverse codes now swap foreground and background colors.
+Fixed: Improved error reporting in MCP.
+Fixed: Connect dialog no longer behind main window at startup.
+Fixed: nasty bug with bad regexp patterns in hilites.
+Fixed: bug with multi-word world names in simple-edit.
+Fixed: bug with windows web browser launch, due to unquoted path in registry.
+Fixed: bug with multi-word hilite names.
+Added: ANSI dim style codes are now supported.
+Added: Support for re-negotiating MCP packages.
+Changed: Majorly rewrote the chess package to support MCP.
+Changed: /tool:start no longer created a separate interp.
+
+
+
+TrebTk 1.012
+Fixed: Minor tweaks to MPI color syntax highlighting.
+Fixed: Bug with Ctrl-m matching of braces in editor.
+Changed: If less than 400 lines long, the editor auto-matches braces, etc.
+
+
+
+TrebTk 1.011
+Fixed: File->SendFile bug complaining about undefined variable $file.
+Fixed: Many MCP-GUI errors with handling worldnames with spaces.
+Fixed: MCP simpleedit editor showed up offscreen in windows.
+Changed: Generalized color syntax highlighting in the editor.
+Added: MPI color syntax highlighting support in the editor.
+Added: TCL color syntax highlighting support in the editor.
+
+
+
+TrebTk 1.010
+Changed: Status bar history now shows end of history.
+Changed: trebuhet.gif icon no longer has weird blue background.
+Added: MCP simpleedit package and editor now support MUF color syntax hiliting.
+
+
+
+TrebTk 1.009
+Fixed: Problem with running treb on older TCL versions.
+Changed: SSL indicator is now a more intuitive padlock icon.
+
+
+
+TrebTk 1.008
+Changed: Create hilites from templates is now in cascaded menu in context menu.
+Changed: Rewrote main menu subsystem system to be more easily configurable.
+Fixed: Popup list is now above ComboBox when there is too little room below.
+Fixed: Menus now have proper accelerators for the Macintosh.
+Fixed: Telnet negotiations now reply DONT to unknown WILL sequences.
+Added: Edit->Clear Scrollback menu item to erase scrollback.
+
+
+
+TrebTk 1.007
+Fixed: bug with /statbar with messages starting with -
+Fixed: bug with using [string is] when older TCL interps don't know of it.
+
+
+
+TrebTk 1.006
+Fixed: unix bug with parsing URLs with &s and \s in them.
+
+
+
+TrebTk 1.005
+Fixed: bug with /line_subst used on lines containing double-quotes or braces.
+Fixed: bug with version checking on TCL interp version "8.3.2+".
+Fixed: /quote now puts messages on the status bar to let you know it's sending,
+  and when it has completed sending.
+
+
+
+TrebTk 1.004
+Added: Support for platform specific preferences. (ie: mac, win, unix)
+Added: 'Browser command' unix preference, to set browser to launch for URLs.
+
+
+
+TrebTk 1.003
+Added: SSL encryption indicator in status bar.
+Fixed: Hang with using SSL to connect to a non-SSL socket.
+
+
+
+TrebTk 1.002
+Fixed: Bug with defining tls::password when tls not available.
+
+
+
+TrebTk 1.001
+Fixed: Made sure the cacerts dir gets added to the Live Updates.
+
+
+
+TrebTk 1.000
+Fixed: Windows keybinds should now be correct.  I think.
+Fixed: Pasting text into the display area should paste into input buffer.
+Changed: Version 1.000 is finally here!
+Added: Support for SSL encrypted sockets, if the TLS extension is installed.
+
+
+
+TrebTk 1.0a99
+Fixed: "Create hilite from template" cascade context menu item was showing
+       when no templates existed.
+Fixed: "Create gag to suppress text" context menu item now defaults to
+       'contains' matching, and a priority of 100.
+Fixed: /tool:notifyregistered now takes the expected arguments.
+Fixed: Unix now should correctly handle partial url's without protocol spec.
+Fixed: Some MCP error mesageswere completely wrong.
+Added: TCL version warning dialog now has clickable URL.
+Added: /tool:edit now has working Choose button for path.
+Added: Makefile with install, package, and srpm targets for Linux.
+Added: mkdir_recursive bourne shell script for Linux/Unix installs.
+Added: trebuchet.spec file for generating Linux SRPM and RPM packages.
+Added: hilite-set, hilite-clear, and hilite-delete MCP control commands.
+
+
+
+TrebTk 1.0a98
+Fixed: Hilite category combobox dropdown is now populated with the categories
+       that are used in existing hilites.  The first option is now always
+       "Templates".
+Fixed: /send_dlog no longer resets -world to the last connected world.
+Fixed: Worldbutton Disconnect&Close menu item now pops up a confirmation dlog.
+Fixed: Styles can now be created with spaces in their name in the GUI.
+Fixed: Turning logging off now can handle worlds with spaces in their names.
+Fixed: regexp hilites with $ getting hilites stuck to bottom of display.
+Fixed: Some URLs can cause Trebuchet to hang.
+Fixed: Made error dialog dismissable via enter key.
+Changed: /hilite's -template arg now just sets -category to "Templates".
+Added: '/statbar -nolog' option, to not log a message in statbar history.
+Added: Resizing display area shows size in default font character size units.
+Added: '/dokey socket_prev' will cycle displayed worlds backwards.
+Added: Context menu for selected text includes "Create Gag..." menu item.
+Added: Context menu for selected text includes "Create hilite..."
+Added: Context menu for selected text now has "Create 'TEMPLATENAME' hilite..."
+       menu items for each existing hilite whose category is "Templates".
+       When you create a hilite from a template, the new hilite has the
+       same settings as the template, except that its category will be the
+       name of the template it was created from.
+
+
+
+TrebTk 1.0a97
+Fixed: Undefined variable 'world' error when deleting a world.
+Fixed: Cut & Paste in various dialogs now should enable "Update" buttons.
+Fixed: Bug with selector dlogs, when they're notified of changes to contents.
+Fixed: Scrollback no longer jerks around after mousewheel scrolling.
+Changed: minor cleanups in MCP GUI code.  Clearing out unused code.
+Added: /world -script and -tcl options, to allow for connection scripts.
+Added: Status bar now mentions Auto Live Update checks, in case DNS freezes.
+
+
+
+TrebTk 1.0a96
+Fixed: About dialog's copyright now says 2001 instead of 2000.
+Fixed: ANSI color 'bold' font is now the same point size as the 'normal' font.
+Fixed: Dialogs under Windows no longer flash before being moved into place.
+Added: /hilite:set NAME [OPTION VALUE [OPTION VALUE...]]
+Added: Send File... dialog now remembers all its settings during a session.
+Added: Find... dialog now remembers all its settings during a session.
+Added: "resizable" arg to MCP GUI dlog-create.  Can be "x", "y", or "both".
+Added: "minwidth" argument to MCP GUI dlog-create.
+Added: "maxwidth" argument to MCP GUI dlog-create.
+Added: "minheight" argument to MCP GUI dlog-create.
+Added: "maxheight" argument to MCP GUI dlog-create.
+Added: Statusbar message history, accessed via button on status bar.
+Added: /statbar:list command to list statusbar message history.
+Added: "Statusbar message history length" preference.
+Added: Key Bindings dialogs now let you more easily construct keybind names.
+Added: Unix standard dialogs should no longer be in humongous fonts.
+
+
+
+
+TrebTk 1.0a95
+Added: MCP GUI "cursor" ctrl-command to move the cursor for the given widget.
+Fixed: bug with 'File->New World' dialog getting an error regarding $ptop.
+
+
+
+TrebTk 1.0a94
+Changed: MCP GUI list-add now supported under ctrl-command as "insert"
+Changed: MCP GUI list-del now supported under ctrl-command as "delete"
+Added: MCP GUI "select" ctrl-command to select dialog list items or text.
+Added: MCP GUI "show" ctrl-command to force dialog controls to show an entry.
+
+
+
+TrebTk 1.0a93
+Fixed: /world's notify callback mechanism rewritten to standard design.
+Fixed: Ctrl-F wasn't opening the Find dialog in the main window.
+Fixed: When a ComboBox had focus, menus didn't respond to Alt-key commands.
+Fixed: Typing the start of a ComboBox option works better now.
+Added: Typing the start of a ListBox entry selects the first matching item.
+
+
+
+TrebTk 1.0a92
+Changed: MCP GUI Image widget now uses "value" as its URL.  You can change it.
+Changed: MCP GUI listbox and combobox controls now throw 'valchanged' events
+  instead of 'buttonpressed' events.
+Fix: Several various MCP GUI bugs.  Layout errors, etc.
+Fix: Some errors in the proxysam.txt documentation file.
+
+
+
+TrebTk 1.0a91
+Added: /webcache:fetch command to do proper http cacheing of MCP GUI images.
+
+
+
+TrebTk 1.0a90
+Fix: Live update was broken.  Fixed that.
+
+
+
+TrebTk 1.0a89
+Changed: error reporting now uses nonmodal dialogs, to prevent out-of-order
+  processing of MCP GUI commands.
+Changed: /web_fetch command now has asyncronous support.
+Added: Per-image progress meter for MCP GUI image loading.
+
+
+
+TrebTk 1.0a88
+Changed: Rewrote how MCP GUI dialog menus are created and managed.
+Added: Support for the MCP GUI image control type.
+
+
+
+TrebTk 1.0a87
+Fix: File menu commands should just affect the foreground world now.
+Fix: Visual bell now also flashed the background color of the 'normal' font.
+Added: Support for auto-checking for Live Update at startup.
+
+
+
+TrebTk 1.0a86
+Fix: Outbound 0xff's weren't escaped for TELNET support.
+Fix: Rewrote the groupbox code to hopefully be mac friendly.
+Fix: Make sure the /statusbar message is drawn before running netscape.
+Fix: Cache available font sizes to speed up /style editor.
+Change: Made all apropriate expr's not do (harmless) double evaluations.
+Change: Made the various :register commands give more info on changes.
+Change: Merged the "unsaved changes" and "worlds are still open" /quit dialogs
+  into a single "yes/no/cancel" dialog.
+Change: Let window manager place most new windows.
+
+
+
+TrebTk 1.0a85
+Fix: trebuchet failed to locate itself when you used a relative symlink.
+Fix: passing URLs containing ',' or ')' to netscape didn't work.
+Fix: with a combobox dropdown showing, clicking on a dialog button failed to
+  dispell the dropdown menu.
+Fix: Trebuchet.tcl relied on a hardcoded path to '#!/usr/bin/wish8.0'.
+Added: support for the TELNET protocol, to allow connecting to port 23.
+
+
+
+TrebTk 1.0a84
+Added a default /bind for the numeric keypad enter key, so it works like the
+  regular enter key.
+Added support in MCP-GUI for keybinds for buttons.
+Added support in MCP-GUI for 'default' button tag.
+Added PASSWORD control type to MCP-GUI, for entering non-visible text.
+Added some new documentation.
+Fixed MCP-GUI focus bug on closing a dialog.
+Changed menu-item MCP-GUI command into ctrl-menuitem.
+Changed scrolling code.  Hopefully it'll work better now.
+
+
+
+TrebTk 1.0a83
+Fixed problems with MCP-GUI code mishandling null panes.
+Fixed passing of URLs without http:// to netscape under unix.
+Fixed parsing of []s and $s in URLs.
+Fixed bug with live-updating from pre-a78.
+Added COPYING file for the GNU General Public License.
+Added "Copyright and Warranty Info" item to the Help menu.
+Added "Flash window title on activity when backgrounded" preference option.
+  It defaults to off, as it can be annoying.  When it's on, if there is any
+  world button with a blinking light, and the main window is either iconified,
+  or doesn't have focus, then the title of the window will flash an "Active"
+  notice.
+Changed Copyright info in the About dialog.
+Changed activity warnings to flash task bar item when window is iconic.
+Changed LOG indicator to use default label font.
+
+
+
+TrebTk 1.0a82
+Fixed some problems with using newer TCL interpreters.
+Added new entries to the Trebuchet help file.
+
+
+
+TrebTk 1.0a81
+Fixed a bug with /recall hanging with large linecounts.
+Fixed a bug with disconnecting sockets not closing logs files.
+Changed code for determining when at the end of scrollback.
+  This may fix some scrolling bugs.  Maybe.
+
+
+
+TrebTk 1.0a80
+Fixed a bug with supporting MCP GUI simple dialogs.
+Fixed a bug with the centering of the splash screen.
+Fixed a bug which caused random temporary hangs of Trebuchet.
+Changed the connection error handling to be more informative.
+Changed the /error dialog to handle multi-line errors.
+Changed the /error dialog to make it have a transient style window border.
+
+
+
+TrebTk 1.0a79
+Fixed a bug with case insensitive hiliting of case sensitive partial hilites.
+Fixed socket code to detect failed connects better.
+Added support for clientside reciept of gui-ctrl-value messages.
+Added support for MCP-GUI list-insert and list-delete commands.
+Changed prefs dialog layout code to prevent edit and spinner widgets from
+  crowding their labels.
+
+
+
+TrebTk 1.0a78
+Added Web Proxy support, with an Http preferences tab in the prefs dialog.
+Fixed some interaction problems with the WindowMaker window manager.
+Fixed a bug with spinner controls in the Preferences dialog zeroing out.
+Fixed a bug where progress dlog was never dismissed on failed live updates.
+
+
+
+TrebTk 1.0a77
+Fixed a bug that complained about deleting the normal font, when changing it.
+Fixed a bug with Send File having words in the delay time field.
+Fixed a bug with unix not being able to select filenames that didn't have
+  file extensions such as '.txt'.   Mainly appeared in Send File.
+Fixed a bug with scrolling down with a down arrow at the end of a text widget.
+Fixed a bug with Wildcard hilites not doing partial-line hilites.
+Added the "case sensitive" option to hilite matching.
+Added the "Contains word" match type to hilites, to only hilite full words
+  that exactly match the word given.
+Added the "Line" status info to the /textdlog window.
+Added an optional configurable third button to the /textdlog window.
+Added Collapsible and Collapsed tags to MCP GUI frame widgets, for supporting
+  group boxes that can be collapsed to save screen real-estate.
+Added FONT tag to the MCP-GUI listbox control. Can have values of "fixed"
+  or "variable" only.  Defaults to variable width font.
+Changed default FONT for the MCP-GUI multiedit widget to "fixed".
+Changed spinner widget to be created and used like a basic widget.
+Changed MCP simple-edit to have a Compile button when editing MUF code.  This
+  sends the code like the Done button will, but the window isn't dismissed.
+
+
+
+TrebTk 1.0a76
+Fixed a bug with the simple-edit package sending to the wrong world.
+Fixed Notebook widget to resize as controls expand child panes.
+Added Menu capabilities to the MCP-GUI package.
+Added FONT tag to the MCP-GUI multi-edit control. Can have values of "fixed"
+  or "variable" only.  Defaults to variable width font.
+
+
+
+TrebTk 1.0a75
+Fixed the MCP code to properly escape "s and \s in arguments.
+Fixed the MCP-GUI spinner widget to report changed values.
+
+
+
+TrebTk 1.0a74
+Fixed a bug with processing multi-line recieves with /readlines and MCP.
+Changed the fakebuttons used for quickbuttons, so that they always visibly
+  depress when you click on them, even when they are clicked quickly.
+Added the first fundamentals of the MCP org-fuzzball-gui 1.0 package.
+
+
+
+TrebTk 1.0a73
+Fixed a bug with $startup_con_dlog when the splash screen is enabled.
+
+
+
+TrebTk 1.0a72
+Fixed a bug which sometimes hilited multiple lines as if they were one line.
+Fixed a bug that allowed typing spaces into the display window.
+Fixed a bug that sent shifted keystrokes from the display buffer as unshifted
+  keystrokes to the input buffer.
+
+
+
+TrebTk 1.0a71
+Fixed a bug where partial lines from one world showed up in another world.
+Added a "Start up with connection dialog" preference, so that when you start
+  Trebuchet, it automatically pops open the World Connect dialog.
+
+
+
+TrebTk 1.0a70
+Fixed bug where partial lines sent from the server that didn't have CR or LF
+  terminators would cause the client to eat 99% CPU and appear to lock up.
+Added Control-, and Control-. bindings to all text widgets, to allow indenting
+  and outdenting of multiple text lines.
+Added a Mode menu to the /textdlog and Scratchpad.  This lets you set the
+  editor to a programmers mode for C, TCL, or MPI.
+Added Control-m binding to /textdlog and Scratchpad.  It will momentarily
+  show matching braces, brackets, parens and quotes, depending on the
+  programmers mode of the editor.
+
+
+
+TrebTk 1.0a69
+Fixed MCP bug with malformed messages caused by long argument values.
+Changed MCP internal callback structure.
+Changed /web_view to find IE/Netscape better under Windows. (Hopefully.)
+Added dns-org-mud-moo-simpleedit MCP package support.
+Added org-fuzzball-notify MCP package support.
+
+
+
+TrebTk 1.0a68
+Fixed Live Update permissions setting bug for unix.
+Changed Live Update to only fetch changed files.
+
+
+
+TrebTk 1.0a67
+Changed input window resizer bar to resize in font height sized steps.
+Changed line/char counter in statusbar to use "L1 C25" type format.
+Changed Spinner control to not have a label.  It had layout problems.
+Added "Startup script" for running commands on Trebuchet startup.
+Added "Edit startup script..." option menu item.
+Added "Save window location with preferences" preference.
+Added support for string and multiline preference settings.
+
+
+
+TrebTk 1.0a66
+Fixed bug where Preferences dialog wasn't initially given focus.
+Added "Lines to search for word completion" preference.
+Added hidden preference to remember QuickButton toolbar visibility.
+
+
+
+TrebTk 1.0a65
+Added "Copy on select" and "Paste with middle button" preferences.
+Added URL link in the Help menu to the Trebuchet FAQ web page.
+Added URL link in the Help menu to the FB bug database web pages.
+Changed 'advanced' tab to read 'Advanced' in preferences dialog.
+Changed the entire Preferences mechanism to simplify adding new prefs.
+
+
+
+TrebTk 1.0a64
+Fixed bug with calculating the treb_root_dir when softlinks are in use.
+Fixed unix permissions on Live Updated files to be world readable.
+Added use of TREB_ROOT_DIR environment variable, if available.
+Changed prefs "Dismiss splash screen quickly" to "Don't display splash screen".
+
+
+
+TrebTk 1.0a63
+Added button 4/5 mousewheel support for Unix Xwindows.
+Added an "Advanced" tab to the Preferences dialog, with the following options:
+  "Dismiss splash screen quickly at startup" defaults to off.
+  "Ask confirmation for risky actions" defaults to on.
+Changed /yesno_dlog to not put up a dialog unless "Ask confirmation" is on.
+Changed main routine to dismiss the splash screen as fast as possible, if
+  the "Dismiss splash screen quickly" preference is on.
+Changed the notebook megawidget to look more like Win95 notebook widgets.
+Removed the ban on processing mcp-negotiate-can mesgs after an -end mesg.
+Removed the ANSI tab in the Preferences dialog that wasn't doing anything.
+Fixed a bug with /log with multi-word world names.
+
+
+
+TrebTk 1.0a62
+Fixed the bug with launching netscape from URLs.  Again.  This time for sure!
+Fixed the bug with using the main window's resizing box.
+Added byte totals to Live Update progress window.
+
+
+
+TrebTk 1.0a61
+Added indicators of total download progress to Live Update.
+
+
+
+TrebTk 1.0a60
+Fixed another bug in Live Update.
+
+
+
+TrebTk 1.0a59
+Fixed a bug with hilite names with spaces in them.
+Fixed a bug in Live Update.  Oddly enough, you can use Live Update to fetch
+  this bugfix.
+
+
+
+TrebTk 1.0a58
+Fixed a bug where scrollback length limits killed hilites.
+Fixed a bug where the Preferences Dialog didn't mark prefs as changed.
+Fixed a bug in cancelling a "Save As..." in the scratchpad.
+Fixed a bug in /selector with multi-word world names.
+Fixed a bug with clicking on text erasing the clipboard.
+Fixed a bug with /web_view not launching Netscape under windows.
+Fixed the display buffer to allow Ctrl-C to copy selected text.
+Fixed the display buffer to allow Ctrl-V to paste to the input buffer.
+Removed the bar with the clock on it to save screen real estate.
+Added support for the mailto: URL type.
+Added the /web_fetch command to allow fetching URL's.
+Added the /web_update command for doing Live Updates of Trebuchet Tk.
+Added a Live Update menu item to the Help menu.
+
+
+
+TrebTk 1.0a57
+Fixed a bug with using -list in /selector
+Fixed /selector to disable the edit and ok buttons if the listbox is empty.
+Fixed a bug with using down-arrow keys in combo boxes.
+Fixed a bug with using a World Button's context menu with worlds that have
+  spaces in their name.
+Added support for ANSI color codes.
+Added the Preferences Dialog for editing things like /more, /jump, etc.
+
+
+
+TrebTk 1.0a56
+Added /process to allow listing and killing background processes.  Background
+  processes are created by commands with delays.  Ie: /quote, /repeat, etc.
+Added the View->List Processes... item to allow managing background processes.
+Fixed some bugs with world activity lights.
+Fixed /jumpscroll so it actually works.
+Optimized the routine for determining when the display is at the end.
+
+
+
+TrebTk 1.0a55
+Fixed bug with resizing the main window.
+Changed the splash screen to look much nicer.
+Created the first edition of an InstallShield installer for Windows.
+
+
+
+TrebTk 1.0a54
+Fixed text selection bug, when ending with pointer out of the window. (YAY!)
+
+
+
+TrebTk 1.0a53
+Changed startup to not display the main window until the prefs are loaded.
+Changed error dialogs to place them in a better screen location.
+Changed error reporting to make stack backtraces less cluttered.
+Added startup splash screen.
+
+
+
+TrebTk 1.0a52
+Added support for App key on Windows 104 keyboards.
+Added window location memory back in.
+Fixed a bug trying to do word completion on names characters that have special
+  meanings in regular expression patterns.
+
+
+
+TrebTk 1.0a51
+Added https:// pattern to URL matching.
+Fixed some problems with incomplete call stack tracing on errors.
+
+
+
+TrebTk 1.0a50
+Fixed text widgets so up/down at 1st/last line takes you to very start/end.
+Changed error dialogs to be clearer, while allowing access to call stack.
+
+
+
+TrebTk 1.0a49
+Added context menus for buttonbars, to add, edit, and hide them more easily.
+Fixed bug with deleting buttonbar items.
+Changed /newdlog to allow changing names of existing items.
+
+
+
+TrebTk 1.0a48
+Fixed bug with creating extra quickbutton when updating existing quickbutton.
+Added preliminary Help Topics item to Help menu.
+Added ability to hide quickbuttons bar from View menu.
+
+
+
+TrebTk 1.0a47
+Changed /selector's -persistent flag to be -editpersist and -selectpersist,
+  to let you specify persistence per button.
+Added Edit button to the File->Connect dialog, to let you edit specific items.
+Added QuickButtons, to allow single-click execution of macros.
+Added the intrinsic code for button bars.
+Fixed screen clearing to reset /more pagination.
+Fixed Up/Down key selection problems.  Again.
+
+
+
+TrebTk 1.0a46
+Changed the preferences save file to be platform specific, located in the home
+  directory under unix and windows.  Mac should eventually put it in the
+  Preferences folder.  In Unix, you'll need to rename your trebpref.trc file
+  to "$HOME/.trebtkrc".  Under Windows, you just move it to your home dir.
+
+
+
+TrebTk 1.0a45
+Fixed bug in text widget, where up/down keys didn't clear selection first.
+Fixed bug in text widget where Shift-UP/Down didn't select text.
+Fixed bug in text widget where Down key would scroll to end of widget contents.
+Fixed bug with /selector dialog buttons not expanding with longer label text.
+Changed /selector dialog widget positions and spacings.
+Added "File->Send File..." GUI frontend for /quote.
+
+
+
+TrebTk 1.0a44
+Changed stored preferences to only save window size, not window position.
+Changed /selector to be more generic and useful.
+
+
+
+TrebTk 1.0a43
+Fixed an annoying bug with right-clicking the first character of a hilites or
+  selected section of text, that caused an error message to be shown
+Fixed a bug with not showing part of the last line of text in the display.
+Added code to /textdlog to allow execution of TCL code with Ctrl-Enter.
+
+
+
+TrebTk 1.0a42
+Changed MCP procedures to make the internal interface cleaner.
+
+
+
+TrebTk 1.0a41
+Added MCP 2.1 support.  (http://www.moo.muds.org/mcp for info on MCP)
+Added -nolast option to /readlines, to prevent the matched last line from being
+  included in the arguments passed to the command.
+
+
+
+TrebTk 1.0a40
+Fixed /macro:execute to properly set the context to the global context.
+Added errors_nonfatal to force processing of further commands, even under an
+  error condition.
+Fixed blank lines in world output when Tcl read a partial line of text.
+Fixed /escape to properly escape lines including backslashes.
+Fixed bleeding of text between worlds and duplication of text when a trigger
+  encounters an error.
+Added support for telnet proxies.  If the variables proxy_host and proxy_port
+  are set, and the macro proxy_command is defined, then instead of connecting
+  directly to a world, Trebuchet will connect to proxy_host:proxy_port, then
+  run proxy_command as soon as a connection is established, passing the real
+  host and port as arguments.  If a macro proxy_read is also defined, this
+  command will be called with each new line of text read from the world until
+  it sets proxy_connected to some true value, at which point the world is
+  connected; it sets proxy_delay_connect, which causes the connection to be
+  established on the first line read; or proxy_error, which causes the
+  connection attempt to fail and the socket to be disconnected.  The
+  proxy_command macro can also set proxy_delay_connect for cases where the
+  proxy does not need any lines read.
+Added notification to header of trebpref.trc that it is automatically 
+  generated.
+Added /source and process_command_file to read a file and pass it through
+  process_command as a script.
+Added /nonmodalerror to pop up an error without stopping execution of the
+  calling proc.
+Added handling of unknown commands in Tcl to handle macros being called
+  directly in Tcl scripts as /macroname.
+Added reserved style none for triggers that apply no text style.
+Changed the method for determining a socket is connected from having data
+  available to be read to being able to write data.
+Changed command processing so macros and commands all have return values
+  wherever possible.
+Changed result displaying so results of commands are only displayed if the
+  command was entered by the user.
+Changed source_if_exists to catch errors.  FIXME: Errors are not displayed.
+  Perhaps loading of .trc files should be processed by process_commands.
+Changed tracking of sockets so /socket:foreground will be the visible world
+  and /socket:current will be the active world.
+Changed command history to not log blank or duplicate commands.
+Changed handling of error conditions to only display an error dialog when it
+  is absolutely necessary, for example in fileevent handling and hilite
+  processing.  All other error displays will be handled by the error handler.
+
+
+
+TrebTk 1.0a39
+Made minor changes and fixes to /richview viewer.
+
+
+
+TrebTk 1.0a38
+Fixed some file path bugs on Macs.  Still more Mac bugs left, though.
+Fixed some instances where the wrong mouse cursor was shown.
+Added resizing of the main window from the resizing box in the lower right.
+Changed the minimum size of the main window to 320x240.
+
+
+
+TrebTk 1.0a37
+Fixed several problems with /web_view under Linux.
+Added preliminary web fetching code
+Added preliminary /richview viewer/editor for later use with helpfiles.
+
+
+
+TrebTk 1.0a36
+Added code to always hilite URLs in the 'url' /style.
+Added permanent url /style, with a /style:menu for launching a web browser.
+Added -tcl flag to /macro, to make macros be evaluated as TCL scripts.
+Added checkbox to /macro GUI editor, to deal with the -tcl flag.
+Changed /error to use modal transient windows as befits errors.
+Fixed an error with closing a /newdlog dialog.
+
+
+
+TrebTk 1.0a35
+Added '/web_view URL' command to correctly launch a web browser to point at
+  URL, in the platform specific ways needed in Unix and Windows.
+Added '/readlines PATTERN COMMAND' to read all lines from the server until
+  the next line that matches the string match PATTERN.  When that happens, it
+  executes COMMAND, with the list of read lines in the '$treb_readlines_text'
+  global variable.
+Fixed bug with /textdlog -nowrap that didn't set the wrapping correctly.
+Changed the Edit Script dialog in /hilite GUI editor to make it larger and
+  more usable for scripts.
+
+
+
+TrebTk 1.0a34
+Fixed word matching to hilite regexp, line start, and line end match types.
+Fixed bug in /quit that gave a dialog for open but disconnected worlds.
+Fixed bug in /textdlog with getting the parent window to refocus to.
+Added auto-indent feature to text editor.
+Added -nowrap and -autoindent options to /textdlog.
+Added "Send" and "Send to..." menu items to /textdlog's file menu.  These will
+  let you quote the text in the text editor to a connected world.
+Added -prefix, -postfix, -prepend, -append, and -world to /textdlog.  These
+  will let a program specify what the default information is for the "Send"
+  and "Send to..." commands.
+Changed /socket:close to not bring up an annoying dialog.
+
+
+
+TrebTk 1.0a33
+Added -readonly option to /textdlog, to allow for showing noneditable text.
+Changed Trebuchet to display command results and errors in a new readonly
+  /textdlog window.  This keeps results from getting mixed with MU* output.
+Fixed a bad bug with /saveprefs.
+Changed /saveprefs to not overwrite prefs file if save wasn't successful.
+
+
+
+TrebTk 1.0a32
+Changed startup to attempt to position the window as quickly as possible.
+Changed startup to not install default keybinds, if a prefs file is loaded.
+Added /more and paging features.
+
+
+
+TrebTk 1.0a31
+Fixed the insert cursor in the input buffer to match the text color, which
+  makes its contrast to the background at least as good as the text contrast.
+Added the -tcl option to key /binds, and a TCL checkbox to the GUI editor.
+Added a scrollbar to the script edit control in the /bind GUI editor.
+
+
+
+TrebTk 1.0a30
+Changed the widget layout and designs in the /hilites GUI editor.  I think
+  this should make it a bit more intuitive, but it still needs work.
+Changed button layouts on all /editdlog and /newdlog dialogs.
+Added initial /tool class to handle trusted tools.  Needs lots of work still.
+Added many capabilities to the /textdlog command, to allow it to be used from
+  scripts to return data, etc.  -modal, -variable, -buttons, -donecommand,
+  and -persistent are the added options.  Use /textdlog -help for more info.
+Added -beep option to /hilite, and added a checkbox to the hilite edit dlog.
+Added -tcl option to /hilite to allow a hilite script to evaluate as raw TCL.
+
+
+
+TrebTk 1.0a29
+Changed combobox behaviour slightly to more closely model Win95 ComboBoxes.
+Changed /hilite editor to use /editdlog.
+Changed /hilite, /bind, /macro, /world, and /style to use the /macro:edit type
+  syntax to invoke the editor for that class type.
+Changed /editdlog based editors to not open multiple editors, but just use one.
+Fixed /editdlog & /newdlog to return focus to the previously focused control.
+Fixed /bell for the case of '/bell X' where X is a number count.
+Fixed /bell to queue up beeps to occur no more than 5 times a second.
+Added Category string field to /hilites, for use with filtering by category.
+Added Enabled bool field to /hilites, to allow disabling hilites.
+Added Template bool field to /hilites, to allow easier creation of hilites.
+Added back in the ignoring of blank lines from a server.
+Added in support for opening and saving to files in /textdlog.
+
+
+
+TrebTk 1.0a28
+Fixed Edit->Find to now pop up a find dialog that works.
+Added a find dialog to the /textdlog's Edit->Find menu item.
+
+
+
+TrebTk 1.0a27
+Added /textdlog to create a rudimentary text editor window.  This is useful
+  for the scratchpad, and for displaying /recall results.
+Changed world status lights to blink when a background world has unread text.
+Fixed the View->Scratchpad menu item to actually fire up a /textdlog editor.
+
+
+
+TrebTk 1.0a26
+Added /dokey delete_word and a default Control-w binding to match it.
+
+
+
+TrebTk 1.0a25
+Fixed a bug in /substitute regarding replacing previous attributes
+Changed loading of /hilites to be much faster.
+
+
+
+TrebTk 1.0a24
+Fixed a bug with connecting to worlds with spaces in the name.
+Fixed a bug with keeping the inbuf insert cursor visible after Ctrl-Enter.
+Fixed a bug with moving the inbuf insert cursor up and down while hidden.
+Fixed a bug with the style and hilite edit dialogs being blank. (broken in a23)
+Changed /substitute to allow an optional attr argument, to alter attributes.
+
+
+
+TrebTk 1.0a23
+Fixed /style menu setting for the sel tag in new world displays.
+Fixed saving of /style menu prefs for the sel tag, to the trebprefs.trc file.
+Fixed /hilites so that an error isn't given if you connect to a world without
+  /having defined any hilites.
+Fixed bug with lines at end of display being half scrolled off the bottom.
+Fixed /saveprefs to unset dirty_preferences flag, eliminating incorrect warnings.
+Fixed some behavioral problems with the synthesized combo boxes.
+Fixed a couple bugs with Cut/Copy/Paste.
+Fixed a few of the many bugs on the Macintosh platform.
+Changed Cut/Copy/Paste to be more consistent across all Text and Entry widgets.
+Changed right-click popups to all use the <<ContextMenu>> triggering event.
+Added code to catch and display more error information.
+
+
+
+TrebTk 1.0a22
+Added functional clearscreen command, defaulting to Control-L
+Fixed a bunch of things I broke in /dokey a21.
+
+
+
+TrebTk 1.0a21
+Changed timer to not perform unneccesary graphics updates of charcount and time.
+  This should improve remote Xwindows performance.
+Changed /quit to only confirm exiting when worlds are still connected.
+Changed /quit to ask if you want to save changes to prefs, macros, worlds, etc.
+Added /dokey to handle most standard keypress commands used by trebuchet.
+Fixed an ugly bug with deleting hilites.
+Fixed a bug with word hilites not hiliting text of a different case from the pattern.
+
+
+
+
+TrebTk 1.0a20
+Fixed /escape to escape semicolons correctly.
+Changed input buffer handling for up and down arrow keys when working with
+  wrapped lines.  Now instead of going to the next or previous line, it goes
+  to the char directly above or below the current insert position.  More like
+  TinyFugue.
+
+
+
+TrebTk 1.0a19
+Changed internals for hilite matching, to make hilighting and script evaluation
+  occur together.  This will allow for /substitute.
+Added cut/copy/paste right-click popups for all text entry controls.
+Added '/substitute STRING' that will replace the string currently being matched
+  by hilites.  This should only be run from a triggered /hilite script.  This
+  is used to replace the line currently being matched with the new STRING, to
+  test against the remaining hilite/triggers.
+
+
+
+TrekTk 1.0a18
+Fixed worldbutton light so it turns yellow on connecting when re-using a
+  display. (Can be checked by using the reconnect item in the worldbutton
+  context menu)
+
+
+
+TrebTk 1.0a17
+Added /log command to turn logging to file on and off.
+Added Start/Stop Logging menu item in the File menu.
+Added Disabling of File and Edit menu entries when commands aren't valid.
