@@ -5,7 +5,7 @@ exec wish "$0" "$@"
 #############################################################################
 #
 # Trebuchet Tk
-# copyright 1997-2003 by Fuzzball Software
+# copyright 1997-2016 by Fuzzball Software
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1024,7 +1024,7 @@ proc /show_copyright {} {
 proc /show_about {} {
     global treb_version treb_name
     tk_messageBox -default ok -type ok -title {About Trebuchet} -message \
-        "$treb_name  $treb_version\nCopyright 1998-2005 by Fuzzball Software\nReleased under the GNU Public License\n\n\"An Excellent Way to Sling Mud!\""
+        "$treb_name  $treb_version\nCopyright 1998-2016 by Fuzzball Software\nReleased under the GNU Public License\n\n\"An Excellent Way to Sling Mud!\""
     focus [/inbuf]
     return ""
 }
