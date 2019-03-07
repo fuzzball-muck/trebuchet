@@ -1556,9 +1556,3 @@ TrebTk 1.0a17
 Added /log command to turn logging to file on and off.
 Added Start/Stop Logging menu item in the File menu.
 Added Disabling of File and Edit menu entries when commands aren't valid.
-
-
-
-
-
-

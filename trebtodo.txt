@@ -58,5 +58,3 @@ Macros, Triggers:
 Documentation:
     Document /xxxx command interfaces.
     Write user helpfile.
-
-

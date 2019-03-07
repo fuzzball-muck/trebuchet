@@ -5,7 +5,7 @@ exec wish "$0" "$@"
 #############################################################################
 #
 # Trebuchet Tk
-# copyright 1997-2003 by Fuzzball Software
+# copyright 1997-2016 by Fuzzball Software
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -359,7 +359,7 @@ proc init {argc argv} {
         } else {
             append mesg "\nPlease fetch and install the latest version of Trebuchet from:"
         }
-        set tclurl "http://www.belfry.com/fuzzball/trebuchet/faq.html#WhereGetIt"
+        set tclurl "https://sourceforge.net/projects/trebuchet/"
         label .icon -bitmap error -foreground red
         label .text -text $mesg -anchor sw -justify left -font $treb_fonts(sansserif)
         label .url -text $tclurl -anchor nw -justify left -foreground blue -font $treb_fonts(url) -cursor hand2
@@ -1018,13 +1018,13 @@ proc /show_copyright {} {
     global treb_root_dir
     /textdlog -buttons -title "GNU General Public License" \
         -width 80 -height 24 -nowrap -readonly \
-        -file [file join $treb_root_dir COPYING]
+        -file [file join $treb_root_dir LICENSE]
 }
 
 proc /show_about {} {
     global treb_version treb_name
     tk_messageBox -default ok -type ok -title {About Trebuchet} -message \
-        "$treb_name  $treb_version\nCopyright 1998-2005 by Fuzzball Software\nReleased under the GNU Public License\n\n\"An Excellent Way to Sling Mud!\""
+        "$treb_name  $treb_version\nCopyright 1998-2016 by Fuzzball Software\nReleased under the GNU Public License\n\n\"An Excellent Way to Sling Mud!\""
     focus [/inbuf]
     return ""
 }
@@ -1845,7 +1845,7 @@ proc main {argc argv} {
         append mesg "and you won't be able to use some features like SSL encryption.\n"
         append mesg "\n"
         append mesg "You can fetch and install the latest TCL/Tk interpreter from"
-        set tclurl "http://www.belfry.com/fuzzball/trebuchet/faq.html#WhereGetIt"
+        set tclurl "https://sourceforge.net/projects/trebuchet/"
         set mesg2 "This warning won't be shown again, once you save preferences."
         set base [toplevel .verwarn]
         label $base.icon -bitmap warning -foreground "#990"

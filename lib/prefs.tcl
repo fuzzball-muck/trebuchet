@@ -36,7 +36,7 @@ set treb_prefs_list {
   str  spell_check_cmd   "aspell list --lang=en"                 0 40 Spelling - "Spelling checker command"
   str  spell_suggest_cmd "aspell -a --lang=en --sug-mode=normal" 0 40 Spelling - "Spelling suggestions command"
   bool spell_as_you_type  0   0     1 Spelling -  "Enable spellcheck-as-you-type in input window."
-  str  unix_browser_cmd "netscape %u" 0 40 HTTP U "Browser command"
+  str  unix_browser_cmd "xdg-open %u" 0 40 HTTP U "Browser command"
   bool use_http_proxy     0   0     1 HTTP     -  "Use HTTP Proxy Server for web fetches"
   str  proxy_host        ""   0    40 HTTP     -  "Proxy host"
   int  proxy_port         0   0 65535 HTTP     -  "Proxy port"

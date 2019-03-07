@@ -692,7 +692,7 @@ Page Macros:TCL:Dialogs "Macros with dialogs" {
 }
 Page Macros:TCL:MCP "MUD Client Protocol" {
     Header "MUD Client Protocol" BNF "Building client/server apps out of [a] MUD!" Para
-	Text {Goto } Bold {http://www.belfry.com/fuzzball/trebuchet/mcp.html} Brk
+	Text {Goto } Bold {https://www.moo.mud.org/mcp/mcp2.html} Brk
 }
 Page Macros:Dialog {The Edit Macros Dialog} {
     Header "The Edit Macros Dialog" BNF {Menu: Options->Macros} Brk
