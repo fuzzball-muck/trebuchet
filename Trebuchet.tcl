@@ -1018,7 +1018,7 @@ proc /show_copyright {} {
     global treb_root_dir
     /textdlog -buttons -title "GNU General Public License" \
         -width 80 -height 24 -nowrap -readonly \
-        -file [file join $treb_root_dir COPYING]
+        -file [file join $treb_root_dir LICENSE]
 }
 
 proc /show_about {} {
