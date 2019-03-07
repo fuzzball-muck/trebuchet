@@ -359,7 +359,7 @@ proc init {argc argv} {
         } else {
             append mesg "\nPlease fetch and install the latest version of Trebuchet from:"
         }
-        set tclurl "http://www.belfry.com/fuzzball/trebuchet/faq.html#WhereGetIt"
+        set tclurl "https://sourceforge.net/projects/trebuchet/"
         label .icon -bitmap error -foreground red
         label .text -text $mesg -anchor sw -justify left -font $treb_fonts(sansserif)
         label .url -text $tclurl -anchor nw -justify left -foreground blue -font $treb_fonts(url) -cursor hand2
@@ -1845,7 +1845,7 @@ proc main {argc argv} {
         append mesg "and you won't be able to use some features like SSL encryption.\n"
         append mesg "\n"
         append mesg "You can fetch and install the latest TCL/Tk interpreter from"
-        set tclurl "http://www.belfry.com/fuzzball/trebuchet/faq.html#WhereGetIt"
+        set tclurl "https://sourceforge.net/projects/trebuchet/"
         set mesg2 "This warning won't be shown again, once you save preferences."
         set base [toplevel .verwarn]
         label $base.icon -bitmap warning -foreground "#990"
