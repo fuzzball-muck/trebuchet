@@ -31,7 +31,7 @@ catch { package require griffin }
 #################################
 # GLOBAL VARIABLES
 #
-global treb_revision; set treb_revision 1081
+global treb_revision; set treb_revision 1082
 global treb_version; set treb_version "1.[format %03d [expr {$treb_revision - 1000}]]"
 global treb_name; set treb_name "Trebuchet Tk"
 global wordchars; set wordchars {-A-Za-z0-9_\'\\.}
@@ -301,8 +301,37 @@ proc init {argc argv} {
         tk scaling 1.3333333333333
     }
 
-    label .fontcheck
-    array set tmp_font [font actual [lrange [.fontcheck cget -font] 0 1]]
+# Under Linux (and probably MacOS-X), newer Tk versions may use the Xft fonts,
+# which causes a havoc in Trebuchet fonts (some anti-aliased fonts not being
+# available for all attributes, causing different font sizes to be used
+# depending whether the font is bold and/or italic, which in turn causes
+# missaligned columns in formatted text using the monospacing font...
+# With this code, we try and use the default Helvetica and Courier bitmap
+# fonts that older Tk versions always used...
+# Helvetica is then also being used for the GUI (preventing ugly blury text in
+# the menus).
+# Note that the actual availability of the Helvetica and Courier bitmap fonts
+# still depend on your system's fontconfig configuration: you may have to remove
+# some configuration file(s) in /etc/fonts/conf.d/ to get rid of the aliases of
+# bitmap fonts to anti-aliased fonts.
+# You still may use --sysfonts to force the use of system fonts with Xft-enabled
+# Tk, and you may use --stdfonts to force the use of Helvetica/Courier fonts
+# with non-Xft-enabled Tk.
+    if {[catch {::tk::pkgconfig get fontsystem} xft]} {set xft no-xft}
+    if {$tcl_platform(platform) == "unix" && $tcl_platform(os) != "Darwin" && $xft == "xft"} {
+        set standard_fonts 1
+    } else {
+        set standard_fonts 0
+    }
+    set standard_fonts [expr {($standard_fonts == 1 && [lsearch -exact $argv "--sysfonts"] == -1) || [lsearch -exact $argv "--stdfonts"] != -1}]
+
+    if {$standard_fonts} {
+        array set tmp_font [font actual Helvetica]]
+    } else {
+        label .fontcheck
+        array set tmp_font [font actual [lrange [.fontcheck cget -font] 0 1]]
+        destroy .fontcheck
+    }
     set sansfont [list $tmp_font(-family) $tmp_font(-size)]
     set sansh [font metrics $sansfont -linespace]
     if {[font metrics $sansfont -fixed]} {
@@ -311,17 +340,25 @@ proc init {argc argv} {
     }
     set treb_fonts(sansserif) $sansfont
     set small_size [expr {int(0.8*$tmp_font(-size))}]
+    
+    font create default_system_font -family $tmp_font(-family) -size $tmp_font(-size)
+    option add *font default_system_font
+    
     if {$small_size < 8} {
         set small_size 8
     }
     array set tmp_font [font actual [list $tmp_font(-family) $small_size]]
     set bbarfont [list $tmp_font(-family) $tmp_font(-size)]
     set treb_fonts(bbar) $bbarfont
-    destroy .fontcheck
     unset tmp_font
 
-    text .fontcheck
-    array set tmp_font [font actual [lrange [.fontcheck cget -font] 0 1]]
+    if {$standard_fonts} {
+        array set tmp_font [font actual Courier]]
+    } else {
+        text .fontcheck
+        array set tmp_font [font actual [lrange [.fontcheck cget -font] 0 1]]
+        destroy .fontcheck
+    }
     set fixedfont [list $tmp_font(-family) $tmp_font(-size)]
     # set fixedh [font metrics $fixedfont -linespace]
     set fixedh $tmp_font(-size)
@@ -330,7 +367,6 @@ proc init {argc argv} {
         set fixedfont [list $tmp_font(-family) $tmp_font(-size)]
     }
     set treb_fonts(fixed) $fixedfont
-    destroy .fontcheck
     unset tmp_font
 
     array set tmp_font [font actual [list Times -$sansh]]
@@ -1767,6 +1803,11 @@ proc main {argc argv} {
 
         set treb_no_prefs_loaded 1
     }
+    
+    if {[/prefs:get menu_font_size] == 0} {
+        /prefs:set menu_font_size [lindex $treb_fonts(sansserif) 1]
+    }
+    font configure default_system_font -size [/prefs:get menu_font_size]
 
     if {![/style:exists normal]} {
         /style add normal -lmargin2 10 -background black -foreground white -font $treb_fonts(fixed)
