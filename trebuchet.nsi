@@ -2,14 +2,18 @@
 ;
 ;When making yourself, change "TMP_DIR" to correct location
 
+SetCompress auto
+SetCompressor /solid lzma
+RequestExecutionLevel admin
+
 !define NICK_NAME "Trebuchet"
 !define PROD_NAME "Trebuchet Tk"
 !define VER_MAJOR 1
-!define VER_MINOR 75
+!define VER_MINOR 82
 !define VER_REVISION 0
 !define VER_BUILD 1
-!define VER_FILE "1075"
-!define VER_DISPLAY "1.075"
+!define VER_FILE "1082"
+!define VER_DISPLAY "1.082"
 !define TMP_DIR "C:\TMP\Install"
 !define BUILD_DIR "${TMP_DIR}\Trebuchet"
 ;-------------------------------
@@ -31,7 +35,7 @@ Name "${PROD_NAME}"
 Caption "${PROD_NAME} ${VER_DISPLAY} (build ${VER_BUILD}) - Setup"
 OutFile "${TMP_DIR}\${NICK_NAME}${VER_FILE}b${VER_BUILD}.exe"
 InstallDir "$PROGRAMFILES\${NICK_NAME}"
-;LicenseData "${BUILD_DIR}\COPYING"
+;LicenseData "${BUILD_DIR}\LICENSE"
 
 ;------------------
 ;Interface Settings
@@ -53,7 +57,7 @@ InstallDir "$PROGRAMFILES\${NICK_NAME}"
 
 ;General pages
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "${BUILD_DIR}\COPYING"
+!insertmacro MUI_PAGE_LICENSE "${BUILD_DIR}\LICENSE"
 ;!insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 
@@ -83,7 +87,6 @@ InstallDir "$PROGRAMFILES\${NICK_NAME}"
 Section "Install"
   SetOutPath "$INSTDIR"
   File "${BUILD_DIR}\*"
-  File /r "${BUILD_DIR}\pkgs"
   File /r "${BUILD_DIR}\lib"
   File /r "${BUILD_DIR}\docs"
   File /r "${BUILD_DIR}\cacerts"
