@@ -19,6 +19,7 @@ set treb_prefs_list {
   cust stdfontsedit "prefs:mkcust_fontsedit"  0 0 Fonts - ""
   cust fontresize   "prefs:mkcust_fontresize" 0 0 Fonts - ""
   bool antialias_fonts    1   0     1 Fonts    D  "Enable Antialiased Fonts"
+  int  menu_font_size     0   8    24 Fonts    -  "Menu font size"
   int  scrollback_lines 500 100 99999 Display  -  "Maximum scrollback length"
   bool pager_flag         0   0     1 Display  -  "Stop scrolling when display fills"
   bool jumpscroll_flag    1   0     1 Display  -  "Enable jump-scrolling"
@@ -167,6 +168,9 @@ proc /prefs:set {name val} {
         set var(value,$name) $val
         if {$var(tab,$name) != "-"} {
             set dirty_preferences 1
+        }
+        if {$name == "menu_font_size"} {
+            font configure default_system_font -size $val
         }
     }
     return
