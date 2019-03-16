@@ -339,11 +339,11 @@ proc init {argc argv} {
         set sansfont [list $tmp_font(-family) $tmp_font(-size)]
     }
     set treb_fonts(sansserif) $sansfont
-    set small_size [expr {int(0.8*$tmp_font(-size))}]
     
     font create default_system_font -family $tmp_font(-family) -size $tmp_font(-size)
     option add *font default_system_font
-    
+
+    set small_size [expr {int(0.8*$tmp_font(-size))}]
     if {$small_size < 8} {
         set small_size 8
     }
