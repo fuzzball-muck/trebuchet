@@ -1,3 +1,28 @@
+TrebTk 1.082
+Doh !... three releases got again smashed by Revar's latest commits.
+Reintroducing the changes that were accidentally reverted in the process:
+
+Added: Automatic use of Helvetica and Courier fonts under Linux, when using
+       a Xft-enabled Tk version to prevent issues with mono-spacing fonts.
+       This behaviour may be overridden with the --sysfonts and --stdfonts
+       command line options (--sysfonts forces the use of system fonts for
+       Xft-enabled Tk versions, and --stdfonts forces the use of the
+       "standard" fonts (Helvetica and Courier) for non-Xft-enabled Tk
+       versions).
+       Note that the actual availability of the Helvetica and Courier bitmap
+       fonts still depend on your system's fontconfig configuration: you may
+       have to remove some configuration file(s) in /etc/fonts/conf.d/ to get
+       rid of the aliases of bitmap fonts to anti-aliased fonts.
+Added: A setting, in the Preferences menu, Fonts tab, to change the menu font
+       size.
+Added: a new command (/switchworld) that allows you to switch to a world by
+       referencing the number it is in the tab list. Author: lisdude
+Added: support for the VMoo client MCP package. Author: lisdude
+Fixed: a bug in telnet_opt_starttls that could prevent TLS connections.
+Fixed: the spec file for Linux.
+
+
+
 TrebTk 1.081
 Fixed URLs for 'check for update'.
 
