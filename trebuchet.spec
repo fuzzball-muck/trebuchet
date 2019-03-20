@@ -1,13 +1,13 @@
 %define name       trebuchet
-%define version    1.075
+%define version    1.082
 %define release    1
 
 Name: 		%{name}
 Version:	%{version}
 Release:	%{release}
-Group: 		Amusements/Games
+Group: 		Networking/Chat
 Summary:	The Trebuchet MUCK client
-Copyright:	GPL
+License:	GPL
 Url: 		http://sourceforge.net/projects/trebuchet/
 Source:		%{name}-%{version}.tar.bz2
 Packager:	Henri <voraphile@yahoo.com>
@@ -26,10 +26,9 @@ can be reference implementations of new protocols.
 %prep
 rm -rf $RPM_BUILD_ROOT
 %setup -q
-chmod -x *.txt lib/*.tcl
-chmod +x Trebuchet.tcl
 find . -name "CVS" -type "d" -print | xargs rm -rf
-cp -af %{_specdir}/%{name}.spec %{name}.spec
+find . -type "f" -print | xargs chmod -x 
+chmod +x mkdir_recursive Trebuchet.tcl
 
 %build
 %make
@@ -39,19 +38,55 @@ rm -f xx*
 
 %install
 %makeinstall
-mkdir -p $RPM_BUILD_ROOT/usr/libexec/trebuchet/cacerts
-/bin/cp -af icons cacerts COPYING *.txt $RPM_BUILD_ROOT/usr/libexec/trebuchet/
+mkdir -p $RPM_BUILD_ROOT/%_prefix/libexec/trebuchet/cacerts
+cp -af ding.wav icons cacerts LICENSE *.txt $RPM_BUILD_ROOT/%_prefix/libexec/trebuchet/
+
+mkdir -p $RPM_BUILD_ROOT/%_iconsdir
+cp -af icons/Treb2.png $RPM_BUILD_ROOT/%_iconsdir/Trebuchet.png
+
+mkdir -p $RPM_BUILD_ROOT%_datadir/applications
+cat << EOF >$RPM_BUILD_ROOT%_datadir/applications/%name.desktop
+[Desktop Entry]
+Version=1.0
+Name=Trebuchet
+GenericName=Trebuchet MUCK client
+Comment=MUCK/MUSH/MUX/MUD client
+Exec=treb
+Terminal=false
+Type=Application
+Icon=Trebuchet
+Categories=Network;Chat;
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-/usr/bin/treb
-/usr/libexec/trebuchet/*
+%_bindir/treb
+%_prefix/libexec/trebuchet/*
+%_iconsdir/*
+%_datadir/applications/%name.desktop
 
 %changelog
-* Wed May 11 2001 Revar Desmera <revar@belfry.com>
+* Sun Dec 04 2016 Henri @ Voregotten Realm
+- Trebuchet v1.082.
+- Reintroduced changes accidentally overwritten by Revar's latest commits.
+
+* Thu Mar 30 2015 Henri @ Voregotten Realm
+- Trebuchet v1.081.
+- Added icon and desktop files to the binary rpm.
+
+* Thu Mar 26 2015 Henri @ Voregotten Realm
+- Trebuchet v1.080.
+
+* Thu Nov 4 2010 Henri @ Voregotten Realm
+- Trebuchet v1.077.
+
+* Thu Nov 4 2010 Henri @ Voregotten Realm
+- Trebuchet v1.076.
+
+* Wed May 11 2010 Revar Desmera <revar@belfry.com>
 - Trebuchet v1.075.
 - Merged Henri's and my tree.
 

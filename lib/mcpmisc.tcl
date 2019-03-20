@@ -1,9 +1,5 @@
 ###########################
 ##  AWNS Ping Interface  ##
-############################################################################
-##
-##
-############################################################################
 
 global PingInfo
 
@@ -103,6 +99,8 @@ proc awns_status {world data} {
 mcp_register_pkg "dns-com-awns-status" 1.0 1.0
 mcp_register_handler "dns-com-awns-status" "" awns_status
 
+#####################
+##  MSP Interface  ##
 
 global MSPurls
 global MSPentries
@@ -236,13 +234,13 @@ proc msp_play {world type data} {
                     if {$play_command != ""} {
                         append play_command " /minimized /close /play %f"
                     }
-                }
-                mac {
-	            # I -think- this is correct, as Tcl is documented as missing an
-                    # "exec" command on old Macintosh platforms...
-                    return
-                }
-                default {
+		}
+		mac {
+			# I -think- this is correct, as Tcl is documented as missing an
+			# "exec" command on old Macintosh platforms...
+			return
+		}
+		default {
                     # The sox "play" command is available for UNICES and MacOS-X...
                     if {![catch {eval "exec play -h"}]} {
                         set play_command "play %f"
@@ -321,6 +319,8 @@ mcp_register_pkg "dns-com-zuggsoft-msp" 1.0 1.0
 mcp_register_handler "dns-com-zuggsoft-msp" "sound" msp_play_sound
 mcp_register_handler "dns-com-zuggsoft-msp" "music" msp_play_music
 
+##########################
+##  FuzzBall Interface  ##
 
 tcl::OptProc /fbhelp {
     {-world    {}     "The world to get help from."}
@@ -491,3 +491,20 @@ proc fb_images_forget {world} {
 
 mcp_register_pkg "org-fuzzball-loadimage" 1.0 1.0
 mcp_register_handler "org-fuzzball-loadimage" "" fb_image_load
+
+
+######################
+##  VMoo Interface  ##
+
+proc vmoo_client_init {world vers} {
+    set pkg "dns-com-vmoo-client"
+
+    global treb_version treb_name
+    set cols [lindex [get_display_size] 0]
+    set rows [lindex [get_display_size] 1]
+
+    /mcp_send $pkg "screensize" -world $world Cols $cols Rows $rows
+    /mcp_send $pkg "info" -world $world Name $treb_name text-version $treb_version internal-version $treb_version
+}
+
+mcp_register_pkg "dns-com-vmoo-client" 1.0 1.0 vmoo_client_init

@@ -367,8 +367,8 @@ proc telnet_cmd_eor {sok argv} {
 
 
 proc telnet_opt_starttls {sok request} {
+    global telnetInfo
     if {$request == "DO"} {
-        
         set world [/socket:world $sok]
         if {[info commands tls::init] != {}
             && !$telnetInfo(sok-$sok-notls)

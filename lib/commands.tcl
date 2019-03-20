@@ -34,7 +34,7 @@ proc /editproc_dlog {} {
 }
 
 proc /scratchpad {} {
-    textdlog:create .scratchpad -title "Scratchpad" -persistent
+    textdlog:create .scratchpad -title "Scratchpad" -persistent -font default_system_font
 }
 
 proc /setwidth {{cols 80}} {
@@ -1076,6 +1076,12 @@ proc /editstartup_dlog {} {
         -text [/prefs:get startup_script] -mode tcl \
         -variable [/prefs:getvar startup_script] \
         -donecommand {global dirty_preferences; set dirty_preferences 1}
+}
+
+proc /switchworld number {
+    if {[llength [worldbutton:names]] >= $number} {
+        worldbutton:press [lindex [worldbutton:names] $number-1]
+    }
 }
 
 #############################
