@@ -42,19 +42,19 @@ reasonably.  You will probably need at least 32 megs of RAM, also.
 # Features:
 
 This client has the following features (and more) currently implemented:
-    * Color hilighting of lines and words based on patterns
-    * Triggering execution of scripts based on patterns
-    * Keeps track of your worlds, characters, and passwords, so you don't have to keep entering them manually.
-    * Command line macros to help you automate complex tasks.
-    * Keyboard bindings to perform commands with one or two keystrokes.
-    * QuickButtons to perform commands at the click of a mouse button.
-    * Can generate dynamic GUI dialogs upon server request.
-    * Supports SSL encrypted connections, with the tcltls package.
-    * Input command line history.
-    * Tab word completion, based on the last N lines of scrollback.
-    * Simultaneous multi-connection support.
-    * Quoting of text files to connections.
-    * Nearly all GUI features have command-line equivalents.
+- Color hilighting of lines and words based on patterns
+- Triggering execution of scripts based on patterns
+- Keeps track of your worlds, characters, and passwords, so you don't have to keep entering them manually.
+- Command line macros to help you automate complex tasks.
+- Keyboard bindings to perform commands with one or two keystrokes.
+- QuickButtons to perform commands at the click of a mouse button.
+- Can generate dynamic GUI dialogs upon server request.
+- Supports SSL encrypted connections, with the tcltls package.
+- Input command line history.
+- Tab word completion, based on the last N lines of scrollback.
+- Simultaneous multi-connection support.
+- Quoting of text files to connections.
+- Nearly all GUI features have command-line equivalents.
 
 
 # UNIX/Linux Installation:
@@ -63,7 +63,7 @@ This assumes that you already have TCL/Tk (AKA 'wish') already installed
 on your unix/linux system, and that the 'wish' program is in your $PATH.
 If you don't have wish installed, you will want to either get the TCL/Tk
 packages from your OS vendor (RedHat, Debian, etc.) or you may fetch the
-sources from www.scriptics.com.  You need TCL/Tk version 8.0.5 or later.
+sources from https://www.tcl.tk/.  You need TCL/Tk version 8.0.5 or later.
 
 Un-gzip the tarfile:
 
